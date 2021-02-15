@@ -14,29 +14,31 @@
 
 //To-to: Ensure all libraries are being imported properly
 
-#ifdef HC06_ACTIVE
-    //start bluetooth
-#endif
+  #ifdef HC06_ACTIVE
+      //start bluetooth
+  #endif
 
-#ifdef ACTIVATE_OLCD
-    //start OLCD
-#endif
+  #ifdef WEATHER_STATION
+      //weather station
+  #endif
 
-#ifdef SECURITY_SYSTEM
-    //start ultrasonic
-#endif
+  #ifdef NIGHT_LIGHT
+      //start night light
+      #include "core\nightlight\NightLight.h"
+  #endif
 
-#ifdef NIGHT_LIGHT
-    #include "core\nightlight\NightLight.h"
-    //start night light
-#endif
+  #ifdef ACTIVATE_OLCD
+      //start OLCD
+  #endif
 
+  #ifdef SECURITY_SYSTEM
+      //start ultrasonic
+  #endif
 
-#ifdef SPEAKER
-    //start speaker
-#endif
+  #ifdef SPEAKER
+      //start speaker
+  #endif
 //---------------------------------------------------------------------
-
 
 class SmartHome
 {
@@ -49,30 +51,33 @@ public:
 
 private:
   #ifdef HC06_ACTIVE
-    //start bluetooth
-    _HC06;
+      //start bluetooth
   #endif
 
-  #ifdef ACTIVATE_OLCD
-    //start OLCD
-    _OLCD;
-  #endif
+  #ifdef WEATHER_STATION
 
-  #ifdef SECURITY_SYSTEM
-    //start ultrasonic
-     _Security;
   #endif
 
   #ifdef NIGHT_LIGHT
-    //start night light
-    NightLight _Light;
+      NightLight _Light;
+      //start night light
+  #endif
+
+  #ifdef ACTIVATE_OLCD
+      //start OLCD
+  #endif
+
+  #ifdef SECURITY_SYSTEM
+      //start ultrasonic
   #endif
 
   #ifdef SPEAKER
-    //start speaker
+      //start speaker
   #endif
 
   int _pin; //underscore is used for local variables
+
+
 };
 
 #endif

@@ -27,3 +27,7 @@
 
 //Activates the Speaker functionality
 //#define SPEAKER
+
+//#define WEATHER_STATION
+
+//#define OLCD
