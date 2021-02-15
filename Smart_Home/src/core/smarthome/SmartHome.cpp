@@ -16,20 +16,77 @@
 
 #include "Arduino.h"
 #include "Configuration.h"
-#include "NightLight.h"
+#include "SmartHome.h"
 
 
-#ifdef NIGHT_LIGHT
+//init code
 
-    //init code
+SmartHome::SmartHome()
+    {
+        #ifdef HC06_ACTIVE
+            //start bluetooth
+        #endif
 
-    NightLight::NightLight()
-        {
-            #ifdef DEBUG
-            Serial.println("Night Light - Online");
+        #ifdef ACTIVATE_OLCD
+            //start OLCD
+        #endif
+
+        #ifdef SECURITY_SYSTEM
+            //start ultrasonic
+        #endif
+
+        #ifdef NIGHT_LIGHT
+            _Light = NightLight();
+            //start night light
+        #endif
+
+        #ifdef SPEAKER
+            //start speaker
+        #endif
+    }
+
+boolean SmartHome::init()
+    {
+         #ifdef DEBUG
+
+        //to-do: make sure all attributes of the projet (aka any requirements) are built out below
+        //this #ifdef structure repeats a bunch, so may be wise to build out one and then copy-paste
+            #ifdef HC06_ACTIVE
+                //start bluetooth
+                _HC06.init();
             #endif
-        }
 
+            #ifdef ACTIVATE_OLCD
+                //start OLCD
+                _OLCD.init();
+            #endif
 
-#endif
+            #ifdef SECURITY_SYSTEM
+                //start ultrasonic
+                _Security.init();
+            #endif
+
+            #ifdef NIGHT_LIGHT
+                //start night light
+                _Light.init();
+            #endif
+
+            #ifdef SPEAKER
+                //start speaker
+                _speaker.init();
+            #endif
+
+            Serial.println("\nSmart Home - Online");
+
+         #endif
+         return true;
+    }
+
+boolean SmartHome::run()
+{
+    //run the smart home from here. This is basically the new main 
+    //for this small project
+
+}
+
 

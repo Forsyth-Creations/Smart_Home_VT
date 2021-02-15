@@ -14,8 +14,10 @@ class NightLight
 {
   public:
     NightLight();
+    boolean init();
   private:
-    int _pin = photoPin;
+    int _sensorPin = photoPin;
+    int _ledPin = nightLightPin;
 };
 
 #endif

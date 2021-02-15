@@ -6,5 +6,4 @@
  **/
 
 #define photoPin 5
-#define blueoothPin1 6
-#define blueoothPin2 7
+#define nightLightPin 13
