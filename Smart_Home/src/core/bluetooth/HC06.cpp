@@ -11,7 +11,7 @@
  * 
  * Functionality can be enabled in the "Configuration.h" file
  * Should debugging be needed, disable all other features and simply
- * enable the "DEBUG" variable
+ * enable the "DEBUG" variable. This will output appropriate unit testing values
  **/
 
 
@@ -21,6 +21,10 @@
 
     //init code
 
+    #ifdef DEBUG
 
+    //debug code here
+
+    #endif
 
 #endif
