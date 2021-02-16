@@ -20,11 +20,14 @@
 #ifdef HC06_ACTIVE
 
     //init code
+    HC06::HC06()
+    {
+            
+    }
 
-    #ifdef DEBUG
-
-    //debug code here
-
-    #endif
+    boolean HC06::init()
+    {
+        Serial.println("HC06 - Online");
+    }
 
 #endif

@@ -9,6 +9,7 @@
 #define NightLight_h
 #include "core\pins.h"
 #include "Arduino.h"
+#include "NightLight.h"
 
 class NightLight
 {

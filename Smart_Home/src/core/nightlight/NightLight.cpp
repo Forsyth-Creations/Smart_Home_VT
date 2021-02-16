@@ -23,15 +23,13 @@
     //init code
 
     NightLight::NightLight()
-        {
+    {
             
-        }
+    }
 
     boolean NightLight::init()
     {
-            #ifdef DEBUG
             Serial.println("Night Light - Online");
-            #endif
     }
 
 #endif

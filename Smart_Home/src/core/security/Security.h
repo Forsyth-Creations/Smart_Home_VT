@@ -1,23 +1,23 @@
  /**
- * Humidity.cpp - Foc pulling data from PhotoSensor
+ * Security.cpp - Foc pulling data from PhotoSensor
  * This file was written by Henry Forsyth
  * Februrary 15, 2021
  * Open for public usage
  **/
 
-#ifndef Humidity_h
-#define Humidity_h
+#ifndef Security_h
+#define Security_h
 #include "core\pins.h"
 #include "Arduino.h"
-#include "Humidity.h"
+#include "Security.h"
 
-class Humidity
+class Security
 {
   public:
-    Humidity();
+    Security();
     boolean init();
   private:
-
+  
 };
 
 #endif

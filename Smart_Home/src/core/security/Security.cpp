@@ -17,17 +17,17 @@
 
 #include "Configuration.h"
 
-#ifdef SPEAKER
+#ifdef SECURITY_SYSTEM
 
     //init code
-    Speaker::Speaker()
+    Security::Security()
     {
             
     }
 
-    boolean Speaker::init()
+    boolean Security::init()
     {
-            Serial.println("Speaker - Online");
+            Serial.println("Security System - Online");
     }
 
 #endif
