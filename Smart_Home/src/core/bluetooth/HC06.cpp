@@ -16,6 +16,7 @@
 
 
 #include "Configuration.h"
+#include "HC06.h"
 
 #ifdef HC06_ACTIVE
 

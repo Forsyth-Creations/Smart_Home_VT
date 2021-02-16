@@ -16,6 +16,7 @@
 
 
 #include "Configuration.h"
+#include "Screen.h"
 
 #ifdef OLCD
 

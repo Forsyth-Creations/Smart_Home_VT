@@ -16,6 +16,7 @@
 
 
 #include "Configuration.h"
+#include "Temp.h"
 
 #ifdef WEATHER_STATION
 

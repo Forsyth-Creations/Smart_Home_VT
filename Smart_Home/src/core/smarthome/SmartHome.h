@@ -16,10 +16,13 @@
 
   #ifdef HC06_ACTIVE
       //start bluetooth
+      #include "core\bluetooth\HC06.h"
   #endif
 
   #ifdef WEATHER_STATION
       //weather station
+      #include "core\humidity\Humidity.h"
+      #include "core\temp\Temp.h"
   #endif
 
   #ifdef NIGHT_LIGHT
@@ -29,14 +32,17 @@
 
   #ifdef ACTIVATE_OLCD
       //start OLCD
+      #include "core\screen\Screen.h"
   #endif
 
   #ifdef SECURITY_SYSTEM
       //start ultrasonic
+      #include "core\security\Security.h"
   #endif
 
   #ifdef SPEAKER
       //start speaker
+      #include "core\speaker\Speaker.h"
   #endif
 //---------------------------------------------------------------------
 
@@ -50,30 +56,36 @@ public:
 //appropriate libraries
 
 private:
-  #ifdef HC06_ACTIVE
-      //start bluetooth
-  #endif
+#ifdef HC06_ACTIVE
+    //start bluetooth
+    HC06 _HC06;
+#endif
 
-  #ifdef WEATHER_STATION
+#ifdef WEATHER_STATION
+    //weather station
+    Temp _Temp;
+    Humidity _Humidity;
+#endif
 
-  #endif
+#ifdef NIGHT_LIGHT
+    //start night light
+    NightLight _Light;
+#endif
 
-  #ifdef NIGHT_LIGHT
-      NightLight _Light;
-      //start night light
-  #endif
+#ifdef ACTIVATE_OLCD
+    //start OLCD
+    Screen _Screen;
+#endif
 
-  #ifdef ACTIVATE_OLCD
-      //start OLCD
-  #endif
+#ifdef SECURITY_SYSTEM
+    //start ultrasonic
+    Security _Security;
+#endif
 
-  #ifdef SECURITY_SYSTEM
-      //start ultrasonic
-  #endif
-
-  #ifdef SPEAKER
-      //start speaker
-  #endif
+#ifdef SPEAKER
+    //start speaker
+    Speaker _Speaker;
+#endif
 
   int _pin; //underscore is used for local variables
 

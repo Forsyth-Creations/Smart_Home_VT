@@ -16,6 +16,7 @@
 
 
 #include "Configuration.h"
+#include "Humidity.h"
 
 #ifdef WEATHER_STATION
 

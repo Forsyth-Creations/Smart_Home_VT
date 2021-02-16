@@ -1,5 +1,5 @@
  /**
- * Screen.cpp - Foc pulling data from PhotoSensor
+ * Screen.h - Foc pulling data from PhotoSensor
  * This file was written by Henry Forsyth
  * Februrary 15, 2021
  * Open for public usage

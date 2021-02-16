@@ -24,10 +24,13 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
 {
 #ifdef HC06_ACTIVE
     //start bluetooth
+    _HC06 = HC06();
 #endif
 
 #ifdef WEATHER_STATION
     //weather station
+    _Temp = Temp();
+    _Humidity = Humidity();
 #endif
 
 #ifdef NIGHT_LIGHT
@@ -37,21 +40,24 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
 
 #ifdef ACTIVATE_OLCD
     //start OLCD
+    _Screen = Screen();
 #endif
 
 #ifdef SECURITY_SYSTEM
     //start ultrasonic
+    _Security = Security();
 #endif
 
 #ifdef SPEAKER
     //start speaker
+    _Speaker = Speaker();
 #endif
 }
 
 boolean SmartHome::init() //runs a test script on each piece to make sure everything is moving slowly
 {
 #ifdef DEBUG
-
+    Serial.println("\nSmart Home - DEBUG MODE ACTIVE\n");
     //to-do: make sure all attributes of the projet (aka any requirements) are built out below
     //this #ifdef structure repeats a bunch, so may be wise to build out one and then copy-paste
     #ifdef HC06_ACTIVE
@@ -59,14 +65,10 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
         _HC06.init();
     #endif
 
-    #ifdef ACTIVATE_OLCD
-        //start OLCD
-        _OLCD.init();
-    #endif
-
-    #ifdef SECURITY_SYSTEM
-        //start ultrasonic
-        _Security.init();
+    #ifdef WEATHER_STATION
+    //weather station
+        _Temp.init();
+        _Humidity.init();
     #endif
 
     #ifdef NIGHT_LIGHT
@@ -74,12 +76,20 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
         _Light.init();
     #endif
 
-    #ifdef SPEAKER
-        //start speaker
-        _speaker.init();
+    #ifdef ACTIVATE_OLCD
+        //start OLCD
+        _Screen.init();
     #endif
 
-    Serial.println("\nSmart Home - DEBUG MODE ACTIVE");
+    #ifdef SECURITY_SYSTEM
+        //start ultrasonic
+        _Security.init();
+    #endif
+
+    #ifdef SPEAKER
+        //start speaker
+        _Speaker.init();
+    #endif
 
 #endif
     return true;
@@ -91,7 +101,7 @@ boolean SmartHome::run()
     //for this small project
     Serial.println("Running smart home");
     delay(4000);
-
+    return true;
     //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
 
     //inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined

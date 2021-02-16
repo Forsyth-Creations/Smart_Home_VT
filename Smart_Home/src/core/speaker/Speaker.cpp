@@ -16,6 +16,7 @@
 
 
 #include "Configuration.h"
+#include "Speaker.h"
 
 #ifdef SPEAKER
 

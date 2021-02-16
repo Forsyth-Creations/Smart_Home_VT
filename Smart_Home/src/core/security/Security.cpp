@@ -16,6 +16,7 @@
 
 
 #include "Configuration.h"
+#include "Security.h"
 
 #ifdef SECURITY_SYSTEM
 
