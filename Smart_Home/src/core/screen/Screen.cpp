@@ -17,6 +17,7 @@
 
 #include "Configuration.h"
 #include "Screen.h"
+#include "Adafruit_GFX.h"
 
 #ifdef OLCD
 

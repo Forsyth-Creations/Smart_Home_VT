@@ -20,17 +20,39 @@
 
 #ifdef NIGHT_LIGHT
 
-    //init code
+//init code
 
-    NightLight::NightLight()
-    {
-            
-    }
+NightLight::NightLight()
+{
+}
 
-    boolean NightLight::init()
-    {
-            Serial.println("Night Light - Online");
-    }
+boolean NightLight::init()
+{
+    Serial.println("Night Light - Online");
+}
+
+boolean NightLight::getSensorState() //default
+{
+    return getSensorState(200);
+}
+
+boolean NightLight::getSensorState(int threshold) //can feed it a threshold
+{
+    int value = analogRead(photoPin);
+    boolean returnState = false; 
+
+    #ifdef DEBUG
+    Serial.println("The value from photoresistor: ");
+    Serial.println(value);
+    #endif
+
+    returnState = (value >= 0 && value < threshold);
+
+    #ifdef DEBUG
+        Serial.println(returnState);
+    #endif
+
+    return true;
+}
 
 #endif
-

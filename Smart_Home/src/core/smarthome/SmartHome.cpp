@@ -103,6 +103,6 @@ boolean SmartHome::run()
     delay(4000);
     return true;
     //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
-
+    
     //inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
 }

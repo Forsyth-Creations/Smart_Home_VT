@@ -23,12 +23,32 @@
     //init code
     Temp::Temp()
     {
-            
+        Temp(5000000); 
+    }
+
+    Temp::Temp(float bVal)
+    {
+         _bVal = bVal;   
     }
 
     boolean Temp::init()
     {
-            Serial.println("Temp - Online");
+        Serial.println("Temp - Online");
+    }
+
+    float Temp::getTemp()
+    {
+        this.getTemp(500, 1000);
+    }
+
+    float Temp::getTemp(float r1, float r2)
+    {
+        //Formula:
+        //      1
+        // ------------
+        // (ln(R1/R2)/B) + (1/R2)
+        float B = _bVal;
+        return 1/((log(r1/r2)/B + (1/r1)));
     }
 
 #endif
