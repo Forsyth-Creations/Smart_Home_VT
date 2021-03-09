@@ -21,7 +21,6 @@ class Speaker
     Speaker();
     boolean init();
   private:
-  
 };
 
 #endif

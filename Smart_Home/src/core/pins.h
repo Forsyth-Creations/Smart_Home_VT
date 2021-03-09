@@ -8,3 +8,7 @@
 
 #define photoPin A0
 #define nightLightPin 13
+#define tempPin A1
+#define speakerPin 3
+#define screenSCL A5
+#define screenSDA A4

@@ -11,7 +11,7 @@
  * Written by Henry Forsyth, Februrary 11, 2021 2:00 AM
  * */
  
-//#define DEBUG
+#define DEBUG
 
 //Activates the bluetooth functionality
 //#define HC06_ACTIVE
@@ -30,4 +30,4 @@
 
 //#define WEATHER_STATION
 
-//#define OLCD
+#define ACTIVATE_OLCD

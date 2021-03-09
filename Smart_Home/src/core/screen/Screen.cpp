@@ -17,19 +17,26 @@
 
 #include "Configuration.h"
 #include "Screen.h"
-#include "Adafruit_GFX.h"
 
-#ifdef OLCD
+#ifdef ACTIVATE_OLCD
 
     //init code
     Screen::Screen()
     {
-            
+            Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+            display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+            display.clearDisplay();
     }
 
     boolean Screen::init()
     {
             Serial.println("Screen - Online");
+            
+           
+            //display.drawBitmap(0,0,custom_start_bmp, 128, 64, SSD1306_WHITE);
+            //display.drawPixel(10, 10, SSD1306_WHITE);
+
+            return true;
     }
 
 #endif
