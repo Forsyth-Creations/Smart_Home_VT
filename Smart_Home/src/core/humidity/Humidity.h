@@ -5,6 +5,12 @@
  * Open for public usage
  **/
 
+/**
+ * Docs
+ * https://www.digikey.com/en/products/detail/amphenol-advanced-sensors/HS12SP/4780894
+ * 
+ **/
+
 #ifndef Humidity_h
 #define Humidity_h
 #include "core\pins.h"

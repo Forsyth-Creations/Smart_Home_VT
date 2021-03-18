@@ -28,6 +28,8 @@
 //Activates the Speaker functionality
 //#define SPEAKER
 
-//#define WEATHER_STATION
+#define TEMP_SENSOR
 
-#define ACTIVATE_OLCD
+//#define HUMIDITY_SENSOR
+
+//#define ACTIVATE_OLCD

@@ -19,9 +19,9 @@
       #include "core\bluetooth\HC06.h"
   #endif
 
-  #ifdef WEATHER_STATION
+  #ifdef TEMP_SENSOR
       //weather station
-      #include "core\humidity\Humidity.h"
+      //#include "core\humidity\Humidity.h"
       #include "core\temp\Temp.h"
   #endif
 
@@ -52,6 +52,7 @@ public:
   SmartHome();
   boolean init();
   boolean run();
+
 //To-do: create all the object declations alongside their
 //appropriate libraries
 
@@ -61,10 +62,10 @@ private:
     HC06 _HC06;
 #endif
 
-#ifdef WEATHER_STATION
+#ifdef TEMP_SENSOR
     //weather station
     Temp _Temp;
-    Humidity _Humidity;
+    //Humidity _Humidity;
 #endif
 
 #ifdef NIGHT_LIGHT
@@ -86,9 +87,6 @@ private:
     //start speaker
     Speaker _Speaker;
 #endif
-
-  int _pin; //underscore is used for local variables
-
 
 };
 

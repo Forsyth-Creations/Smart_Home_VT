@@ -16,23 +16,30 @@
 // We have a thermistor with the XV designation, which has a nominal B-Constant of somewhere between
 // 3900-3949K. Will need to investigate this further (Found on Page 4 of Documentation)
 
+// R naught is the voltage divider resistor, R is the resistance of the thermistor
+
+//https://www.allaboutcircuits.com/projects/measuring-temperature-with-an-ntc-thermistor/
+
 #ifndef Temp_h
 #define Temp_h
 #include "core\pins.h"
 #include "Arduino.h"
 #include "Temp.h"
 
+#define ROOM_TEMP 298.15 //273.15 + 25, rating used by manufacturer (I think)
+#define RESISTOR_ROOM_TEMP 10000 //The XV model has room temp conditions of 10KOhms. See page 12, NCP18XV103p03RB
+
 class Temp
 {
   public:
     Temp();
-    Temp(float bVal); //need B constant value for thermistor
-    boolean init();
-    float getTemp();
-    float getTemp(float r1, float r2);
+    boolean init(double bVal);
+    boolean init(void);
+    double getTemp();
+    double getTemp(double BALANCE_RESISTOR);
   private:
     int _tempPin;
-    float _bVal = 3900000;
+    double _bVal;
 };
 
 #endif

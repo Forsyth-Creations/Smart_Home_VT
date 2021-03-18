@@ -27,10 +27,10 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
     _HC06 = HC06();
 #endif
 
-#ifdef WEATHER_STATION
+#ifdef TEMP_SENSOR
     //weather station
     _Temp = Temp();
-    _Humidity = Humidity();
+    //_Humidity = Humidity();
 #endif
 
 #ifdef NIGHT_LIGHT
@@ -52,6 +52,7 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
     //start speaker
     _Speaker = Speaker();
 #endif
+//Serial.println("Running smart home");
 }
 
 boolean SmartHome::init() //runs a test script on each piece to make sure everything is moving slowly
@@ -65,10 +66,10 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
         _HC06.init();
     #endif
 
-    #ifdef WEATHER_STATION
+    #ifdef TEMP_SENSOR
     //weather station
         _Temp.init();
-        _Humidity.init();
+        //_Humidity.init();
     #endif
 
     #ifdef NIGHT_LIGHT
@@ -99,8 +100,10 @@ boolean SmartHome::run()
 {
     //run the smart home from here. This is basically the new main
     //for this small project
-    Serial.println("Running smart home");
-    delay(4000);
+    delay(200);
+    #ifdef TEMP_SENSOR
+        _Temp.getTemp();
+    #endif
     return true;
     //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
     
