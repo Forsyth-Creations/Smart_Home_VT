@@ -1,100 +1,64 @@
 //import class to set up serial connection with wiring board
 import processing.serial.*;
-
 Serial port;
+PImage img;
 
-//button setup
-color currentcolor;
-RectButton rect1, rect2;
+//RectButton rect1, rect2;
+TextCircle humidity;
+TemperatureCircle temp;
+ToggleWithText nightLightToggle, tempToggle, humidToggle, secSysToggle;
+HScrollbar hs1;
 boolean locked = false;
 int Y_AXIS = 1;
 int X_AXIS = 2;
 color b1, b2, c1, c2;
-  
-void setup() {
+int i = 190;
 
+void setup() {
+  frameRate(60);
   //---------------- set up window ----------------------
   size(800, 1500);
-  color baseColor = color(0, 0, 255);
-  color c1 = color(204, 102, 0);
-  color c2 = color(0, 102, 153);
-  currentcolor = baseColor;
-  // List all the available serial ports in the output pane. 
-  // You will need to choose the port that the Wiring board is 
-  // connected to from this list. The first port in the list is 
-  // port #0 and the third port in the list is port #2. 
-  println(Serial.list()); 
-  // Open the port that the Wiring board is connected to (in this case 1
-  // which is the second open port in the array) 
-  // Make sure to open the port at the same speed Wiring is using (9600bps) 
-  
+  setLinearGradient(0, 0, 800, 1500, color(151, 200, 218), color(255, 255, 255), Y_AXIS);
   //port = new Serial(this, Serial.list()[4], 9600);
-  
-  // Define and create rectangle button #1
- 
-  int x = 60;
-  int y = 60;
-  int size = 50;
-  color buttoncolor = color(153, 102, 102);
-  color highlight = color(102, 51, 51); 
-  rect1 = new RectButton(x, y, size, buttoncolor, highlight);
-  // Define and create rectangle button #2
-  x = 90;
-  y = 100; 
-  size = 50;
-  buttoncolor = color(153, 153, 153);
-  highlight = color(102, 102, 102); 
-  rect2 = new RectButton(x, y, size, buttoncolor, highlight);
-  //-------------- Show a List of All Fonts -----------------
-  String[] fontList = PFont.list();
-  printArray(fontList);
+  //-------------------------- Load Background Image ----------------------------------
+  img = loadImage("background.png");
+  //-------------------------- Circular Elements --------------------------------------
+  temp = new TemperatureCircle(225, 330, 500, color(255, 255, 255), color(0, 0, 255), color(0, 100, 100), color(255, 0, 0));
+  humidity = new TextCircle(575, 330, 500, color(0, 0, 255), color(255, 255, 255));
+  //------------------------- Create Slider --------------------------------------------
+  hs1 = new HScrollbar(70, 570, 450, 30, 2);
+  //------------------------- Toggle Elements ------------------------------------------
+  humidity.setTextFormat(60, color(255, 255, 255));
+  temp.setTextFormat(60, color(255, 255, 255));
+  nightLightToggle = new ToggleWithText(120, 800, "NIGHT LIGHT");
+  tempToggle = new ToggleWithText(120, 900, "TEMP");
+  humidToggle = new ToggleWithText(120, 1000, "HUMIDITY");
+  secSysToggle = new ToggleWithText(120, 1100, "SECURITY SYSTEM");
 }
 
 void draw() {
-  setGradient(50, 190, 540, 80, c2, c1, X_AXIS);
-  //background();
-
-  
+  //background(255, 255, 255);
+  //setLinearGradient(0, 0, 800, 1500, color(151, 200, 240), color(255, 255, 255), Y_AXIS);  
+  image(img, 0, 0);
   //----------------------- Draw the title ---------------------------------
-  //textSize (25); // The arrow keys text size- 20
-  fill (255,255,255); // painting it green.
-  textFont(createFont("Optimus Bold", 50));
-  textAlign(CENTER, CENTER);
-  text("SMART HOME 2021", width/2, 40); //FWD
-  textFont(createFont("Optimus Bold", 25));
-  text("By R. Forsyth and J. Michaud", width - 200, height - 30); //FWD
-  stroke(255);
-  update(mouseX, mouseY);
-  rect1.display();
-  rect2.display();
-}
-
-void update(int x, int y) {
-
-  if(locked == false) {
-    rect1.update();
-    rect2.update();
-  } else {
-    locked = false;
-  }
-  //Turn LED on and off if buttons pressed where
-  //H = on (high) and L = off (low)
-  if(mousePressed) {
-    if(rect1.pressed()) {            //ON button
-      currentcolor = rect1.basecolor;
-      //port.write('H');
-    } else if(rect2.pressed()) {    //OFF button
-      currentcolor = rect2.basecolor;
-      //port.write('L');
-    }
-  }
-}
-
-boolean overRect(int x, int y, int width, int height) {
-  if (mouseX >= x && mouseX <= x+width && 
-      mouseY >= y && mouseY <= y+height) {
-    return true;
-  } else {
-    return false;
-  }
+  writeTextCenter("SMART HOME 2021", (int)(width * .61), 40, 60, color(255, 255, 255)); //Title in Tmed Font
+  writeTextLeft("By R. Forsyth and J. Michaud", 20, height - 30, 25, color(255, 255, 255)); //FWD
+  //----------------------- Update the Sensor Data -------------------------
+  temp.update(50);
+  humidity.update(50, color(255, 255, 255), color(0, 0, 255), "33%");
+  //------------------------ Show Slider -----------------------------------
+  hs1.update();
+  hs1.display();
+  //------------------------ Show Text Next To Slider ----------------------
+  writeTextCenter("Set Temp:", 650, 530, 40, color(255, 255, 255));
+  writeTextCenter(str(round(map(hs1.getPos(), 75, 525, 50, 90))) + "°", 650, 580, 40, color(255, 255, 255));
+  //------------------------ Write Header Text -----------------------------
+  writeTextLeft("Active Elements", 50, 650, 60, color(255, 255, 255)); //Title in Tmed Font
+  stroke(255, 255, 255);
+  line(40, 700, 600, 700);
+  //----------------------- Display User Elements --------------------------
+  nightLightToggle.display();
+  tempToggle.display();
+  humidToggle.display();
+  secSysToggle.display();
 }
