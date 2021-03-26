@@ -29,6 +29,7 @@ NightLight::NightLight()
 boolean NightLight::init()
 {
     Serial.println("Night Light - Online");
+    return true;
 }
 
 int NightLight::getSensorState() //default

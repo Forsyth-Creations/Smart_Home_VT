@@ -109,6 +109,10 @@ boolean SmartHome::run()
         digitalWrite(nightLightPin, _Light.getSensorState(100));
     #endif
 
+    #ifdef DEBUG
+        Serial.println("----------------------------------------------");
+    #endif
+
     return true;
     //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
     
