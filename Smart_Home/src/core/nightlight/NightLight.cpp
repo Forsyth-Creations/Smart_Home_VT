@@ -36,17 +36,17 @@ boolean NightLight::getSensorState() //default
     return getSensorState(200);
 }
 
-boolean NightLight::getSensorState(int threshold) //can feed it a threshold
+int NightLight::getSensorState(int threshold) //can feed it a threshold
 {
     int value = analogRead(photoPin);
-    boolean returnState = false; 
+    int returnState = 0; 
 
     #ifdef DEBUG
     Serial.println("The value from photoresistor: ");
     Serial.println(value);
     #endif
 
-    returnState = (value >= 0 && value < threshold);
+    returnState = (int)(value >= 0 && value < threshold);
 
     #ifdef DEBUG
         Serial.print("ReturnState: ");
