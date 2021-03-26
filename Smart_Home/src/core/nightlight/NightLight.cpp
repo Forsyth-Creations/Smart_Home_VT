@@ -43,7 +43,7 @@ int NightLight::getSensorState(int threshold) //can feed it a threshold
     int returnState = 0; 
 
     #ifdef DEBUG
-    Serial.println("The value from photoresistor: ");
+    Serial.print("The value from photoresistor: ");
     Serial.println(value);
     #endif
 
