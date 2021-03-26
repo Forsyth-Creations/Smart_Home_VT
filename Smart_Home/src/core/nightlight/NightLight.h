@@ -16,8 +16,8 @@ class NightLight
   public:
     NightLight();
     boolean init();
-    boolean getSensorState();
-    boolean getSensorState(int theshold);
+    int getSensorState();
+    int getSensorState(int theshold);
   private:
     int _sensorPin = photoPin;
     int _ledPin = nightLightPin;
