@@ -104,6 +104,11 @@ boolean SmartHome::run()
     #ifdef TEMP_SENSOR
         _Temp.getTemp();
     #endif
+
+    #ifdef NIGHT_LIGHT
+        _Light.getSensorState();
+    #endif
+
     return true;
     //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
     

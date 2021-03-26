@@ -8,11 +8,11 @@ TextCircle humidity;
 TemperatureCircle temp;
 ToggleWithText nightLightToggle, tempToggle, humidToggle, secSysToggle;
 HScrollbar hs1;
+MasterEnable enableButton;
 boolean locked = false;
 int Y_AXIS = 1;
 int X_AXIS = 2;
 color b1, b2, c1, c2;
-int i = 190;
 
 void setup() {
   frameRate(60);
@@ -34,6 +34,7 @@ void setup() {
   tempToggle = new ToggleWithText(120, 900, "TEMP");
   humidToggle = new ToggleWithText(120, 1000, "HUMIDITY");
   secSysToggle = new ToggleWithText(120, 1100, "SECURITY SYSTEM");
+  enableButton = new MasterEnable(400, 1300, 700, 150);
 }
 
 void draw() {
@@ -44,7 +45,8 @@ void draw() {
   writeTextCenter("SMART HOME 2021", (int)(width * .61), 40, 60, color(255, 255, 255)); //Title in Tmed Font
   writeTextLeft("By R. Forsyth and J. Michaud", 20, height - 30, 25, color(255, 255, 255)); //FWD
   //----------------------- Update the Sensor Data -------------------------
-  temp.update(50);
+  temp.update(80);
+  delay(50);
   humidity.update(50, color(255, 255, 255), color(0, 0, 255), "33%");
   //------------------------ Show Slider -----------------------------------
   hs1.update();
@@ -61,4 +63,6 @@ void draw() {
   tempToggle.display();
   humidToggle.display();
   secSysToggle.display();
+  //------------------------ enable button ---------------------------------
+  enableButton.display();
 }
