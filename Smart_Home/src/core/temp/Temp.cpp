@@ -49,7 +49,6 @@ double Temp::getTemp(double BALANCE_RESISTOR)
     // ------------
     // (ln(R1/R2)/B) + (1/R2)
     
-
     const int SAMPLE_NUMBER = 10;
     int adcSamples[SAMPLE_NUMBER]; 
     double adcAverage  = 0; 
@@ -63,17 +62,12 @@ double Temp::getTemp(double BALANCE_RESISTOR)
         delay(10);                                 // wait 10 milliseconds
     }
 
-    /* Then, we will simply average all of those samples up for a "stiffer"
-     measurement. */
-
     for (int i = 0; i < SAMPLE_NUMBER; i++)
     {
         adcAverage += adcSamples[i]; // add all samples up . . .
     }
     adcAverage /= SAMPLE_NUMBER; // . . . average it w/ divide
 
-    /* Here we calculate the thermistor’s resistance using the equation 
-     discussed in the article. */
     rThermistor = BALANCE_RESISTOR * ((MAX_ADC / adcAverage) - 1);
 
     double tempRead =  ((_bVal * ROOM_TEMP) / (_bVal + (ROOM_TEMP * log(rThermistor / RESISTOR_ROOM_TEMP)))) - 273.15;
