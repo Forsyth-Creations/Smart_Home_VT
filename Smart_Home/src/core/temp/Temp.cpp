@@ -83,7 +83,15 @@ double Temp::getTemp(double BALANCE_RESISTOR)
         Serial.println(tempRead);
     #endif
 
+    if (tempRead){
+        digitalWrite(12, HIGH);
+    }
+    else{
+        digitalWrite(12, LOW);
+    }
+
     return tempRead;
+
 }
 
 #endif
