@@ -53,7 +53,7 @@ boolean NightLight::getSensorState(int threshold) //can feed it a threshold
         Serial.println(returnState);
     #endif
 
-    return true;
+    return returnState;
 }
 
 #endif
