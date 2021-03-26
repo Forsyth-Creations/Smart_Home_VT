@@ -49,6 +49,7 @@ boolean NightLight::getSensorState(int threshold) //can feed it a threshold
     returnState = (value >= 0 && value < threshold);
 
     #ifdef DEBUG
+        Serial.print("ReturnState: ");
         Serial.println(returnState);
     #endif
 

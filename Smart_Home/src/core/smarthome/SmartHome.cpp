@@ -106,7 +106,7 @@ boolean SmartHome::run()
     #endif
 
     #ifdef NIGHT_LIGHT
-        _Light.getSensorState();
+        digitalWrite(nightLightPin, _Light.getSensorState(100));
     #endif
 
     return true;
