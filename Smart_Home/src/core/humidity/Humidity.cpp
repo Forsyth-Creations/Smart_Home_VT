@@ -69,4 +69,5 @@ int Humidity::Active()
     }
 return false;
 }
+
 #endif
