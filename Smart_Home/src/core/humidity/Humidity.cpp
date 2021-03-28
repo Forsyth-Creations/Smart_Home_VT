@@ -63,7 +63,8 @@ int Humidity::getValue()
 
 int Humidity::Active()
 {
-    if (this->getValue() > 0 && this->getValue() < 100)
+    int val = this->getValue();
+    if (val >= 0 && val <= 100)
     {
         return true;
     }
