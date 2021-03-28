@@ -69,7 +69,7 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
     #ifdef TEMP_SENSOR
     //weather station
         _Temp.init();
-        //_Humidity.init();
+        _Humidity.init();
     #endif
 
     #ifdef NIGHT_LIGHT
@@ -110,7 +110,7 @@ boolean SmartHome::run()
     #endif
 
     #ifdef HUMIDITY_SENSOR
-        digitalWrite(humidityLEDpin, _Humidity.Active());
+        digitalWrite(humidityLEDpin, _Humidity.init());
     #endif
 
     #ifdef DEBUG
