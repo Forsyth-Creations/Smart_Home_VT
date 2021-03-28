@@ -21,7 +21,7 @@
 
   #ifdef TEMP_SENSOR
       //weather station
-      //#include "core\humidity\Humidity.h"
+      #include "core\humidity\Humidity.h"
       #include "core\temp\Temp.h"
   #endif
 
@@ -65,7 +65,7 @@ private:
 #ifdef TEMP_SENSOR
     //weather station
     Temp _Temp;
-    //Humidity _Humidity;
+    Humidity _Humidity;
 #endif
 
 #ifdef NIGHT_LIGHT

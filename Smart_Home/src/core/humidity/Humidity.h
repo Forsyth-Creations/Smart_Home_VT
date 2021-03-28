@@ -21,8 +21,10 @@ class Humidity
   public:
     Humidity();
     boolean init();
+    int Active();
   private:
-
+    int _sensorPin = humiditypin;
+    int _ledPin = humidityLEDpin;
 };
 
 #endif

@@ -109,6 +109,10 @@ boolean SmartHome::run()
         digitalWrite(nightLightPin, _Light.getSensorState(100));
     #endif
 
+    #ifdef HUMIDITY_SENSOR
+        digitalWrite(humidityLEDpin, _Humidity.Active());
+    #endif
+
     #ifdef DEBUG
         Serial.println("----------------------------------------------");
     #endif
