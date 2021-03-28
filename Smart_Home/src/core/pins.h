@@ -12,3 +12,6 @@
 #define speakerPin 3
 #define screenSCL A5
 #define screenSDA A4
+
+#define humiditypin A2
+#define humidityLEDpin 10
