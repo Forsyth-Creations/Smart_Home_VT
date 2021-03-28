@@ -48,7 +48,6 @@
     else{
         Serial.println("Humidity to High");
          delay(1000);}
-        Serial.println("Humidity - Online");
     }
 
     return Humidity_Percent;
