@@ -110,7 +110,6 @@ boolean SmartHome::run()
     #endif
 
     #ifdef HUMIDITY_SENSOR
-        _Humidity.Active();
         digitalWrite(humidityLEDpin, _Humidity.init());
     #endif
 
