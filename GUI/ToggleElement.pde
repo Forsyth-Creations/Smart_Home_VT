@@ -4,6 +4,7 @@ class Toggle
   final int offset = round(size/3.7);
   boolean state = false;
   int x, y;
+  boolean locked = false;
   Toggle(int _x, int _y)
   {
     x = _x;
@@ -58,6 +59,10 @@ class Toggle
   void setState(boolean input)
   {
    state = input; 
+  }
+  boolean getState()
+  {
+    return state;
   }
 }
 

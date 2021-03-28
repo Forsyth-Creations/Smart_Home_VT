@@ -14,42 +14,59 @@
  * enable the "DEBUG" variable. This will output appropriate unit testing values
  **/
 
-
 #include "Configuration.h"
 #include "Humidity.h"
 
 #ifdef HUMIDITY_SENSOR
 
-    //init code
-    Humidity::Humidity()
-    {
-    }
+//init code
+Humidity::Humidity()
+{
+}
 
-    boolean Humidity::init()
+boolean Humidity::init()
+{
+    if (this->Active())
     {
     Serial.println("Humidity Sensor - Online");
-    return true;
     }
-
-    int Humidity::Active()
+    else
     {
-    int value = analogRead(humiditypin); //converts Analog to Digital
-
-    int Humidity_Percent = (0.00155515*pow(value,2))+30;
-
-     if (value>0){
-     if (value < 215){
-         Serial.print("The Humidity is about: ");
-         Serial.print(Humidity_Percent);
-         Serial.print("%");
-         Serial.println("");
-         delay(1000);}
-     
-    else{
-        Serial.println("Humidity to High");
-         delay(1000);}
+    Serial.println("Humidity Sensor Issue Detected");
     }
+    return true;
+}
+
+int Humidity::getValue()
+{
+    int value = analogRead(humiditypin); //converts Analog to Digital
+    int Humidity_Percent = (0.00155515 * pow(value, 2)) + 30;
+    #ifdef DEBUG
+
+    if (value > 0 && value < 215)
+    {
+        Serial.print("The Humidity is about: ");
+        Serial.print(Humidity_Percent);
+        Serial.print("%");
+        Serial.println("");
+        //delay(1000);
+    }
+    else
+    {
+        Serial.println("Humidity too High. Please check your configuration");
+        //delay(1000);
+    }
+    #endif
 
     return Humidity_Percent;
+}
+
+int Humidity::Active()
+{
+    if (this->getValue() > 0 && this->getValue() < 100)
+    {
+        return true;
     }
+return false;
+}
 #endif

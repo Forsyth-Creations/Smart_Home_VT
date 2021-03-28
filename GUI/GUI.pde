@@ -65,4 +65,31 @@ void draw() {
   secSysToggle.display();
   //------------------------ enable button ---------------------------------
   enableButton.display();
+  
+  //------------ use master enabing button to change all states ------------
+  if (enableButton.getChangedState())
+  {
+    nightLightToggle.setState(enableButton.getState());
+    tempToggle.setState(enableButton.getState());
+    humidToggle.setState(enableButton.getState());
+    secSysToggle.setState(enableButton.getState());
+  }
+  if (nightLightToggle.getState() && tempToggle.getState() && humidToggle.getState() && secSysToggle.getState())
+  {
+    enableButton.setState(true);
+  }
+  else if (!nightLightToggle.getState() && !tempToggle.getState() && !humidToggle.getState() && !secSysToggle.getState())
+  {
+    enableButton.setState(false);
+  }
+  //----------------------- Disable Functionalities -----------------------
+  if (!tempToggle.getState())
+    temp.disable();
+  else
+    temp.enable();
+  
+  if (!humidToggle.getState())
+    humidity.disable();
+  else
+    humidity.enable();
 }
