@@ -21,6 +21,7 @@ class Humidity
   public:
     Humidity();
     boolean init();
+    int getValue();
     int Active();
   private:
     int _sensorPin = humiditypin;
