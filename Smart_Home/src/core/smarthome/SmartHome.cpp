@@ -100,6 +100,16 @@ boolean SmartHome::run()
 {
     //run the smart home from here. This is basically the new main
     //for this small project
+    if (Serial.available())
+    {
+        //connected to GUI, be slave to it
+        Serial.println("Connected to Serial");
+    }
+    else
+    {
+        //run headless
+         Serial.println("Running Headless");
+    }
     delay(200);
     #ifdef TEMP_SENSOR
         _Temp.getTemp();

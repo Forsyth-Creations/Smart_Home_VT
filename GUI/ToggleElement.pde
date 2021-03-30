@@ -5,6 +5,10 @@ class Toggle
   boolean state = false;
   int x, y;
   boolean locked = false;
+  color greenColor = color(104, 205, 96);
+  color redColor = color(204, 23, 21);
+  color blackColor = color(21, 23, 21);
+  color setColor = color(0, 0, 0);
   Toggle(int _x, int _y)
   {
     x = _x;
@@ -13,30 +17,38 @@ class Toggle
   void display()
   {
     isClicked();
-    if (state)
+    if (state && !locked)
     { //should be green
       strokeWeight(.5);
       noStroke();
-      fill(21, 23, 21);
+      fill(blackColor);
       ellipse(x - offset, y, size, size); 
-      if (isMouseOn())
-        fill(50, 150, 96);  
-      else
-        fill(104, 205, 96);          
+
+      if (isMouseOn()) {  
+        setColor = dim(greenColor);
+      } else { 
+        setColor = greenColor;
+      }
+
+      fill(setColor);
       ellipse(x + offset, y, size, size);
-    }
-    else
+    } else if (!locked)
     { //should be red
       strokeWeight(.5);
       noStroke();
-      fill(21, 23, 21);
+      fill(blackColor);
       ellipse(x + offset, y, size, size);
-      
-      if (isMouseOn())
-        fill(140, 9, 8);  
-      else
-        fill(204, 23, 21);       
+      if (isMouseOn()) {  
+        setColor = dim(redColor);
+      } else { 
+        setColor = redColor;
+      }
+      fill(setColor); 
       ellipse(x - offset, y, size, size);
+    } 
+    else
+    {
+      
     }
   }
   void isClicked()
@@ -47,7 +59,7 @@ class Toggle
       delay(50);
     }
   }
-  
+
   boolean isMouseOn()
   {
     if (dist(x + offset, y, mouseX, mouseY) < size/2 || dist(x - offset, y, mouseX, mouseY) < size/2)
@@ -58,11 +70,16 @@ class Toggle
   }
   void setState(boolean input)
   {
-   state = input; 
+    state = input;
   }
   boolean getState()
   {
     return state;
+  }
+
+  void setLock(boolean state)
+  {
+    locked = state;
   }
 }
 
@@ -78,5 +95,5 @@ class ToggleWithText extends Toggle
   {
     super.display();
     writeTextLeft(text, x + 100, y - 10, 49, color(255, 255, 255));
-   }
+  }
 }

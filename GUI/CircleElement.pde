@@ -40,6 +40,11 @@ class Circle {
   {
     locked = false;
   }
+  
+  void setLock(boolean state)
+  {
+    locked = state;
+  }
 }
 
 /**
@@ -77,10 +82,7 @@ class TextCircle extends Circle
     locked = true;
     writeTextCenter("Disabled", x, y - 10, fontSize, fontColor);
   }
-  void enable()
-  {
-    locked = false;
-  }
+
 }
 /**
  This class must be constructed with three loading colors. Their designation is as follows:

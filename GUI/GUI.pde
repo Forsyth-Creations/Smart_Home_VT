@@ -4,6 +4,7 @@ Serial port;
 PImage img;
 
 //RectButton rect1, rect2;
+MenuButton menuButton;
 TextCircle humidity;
 TemperatureCircle temp;
 ToggleWithText nightLightToggle, tempToggle, humidToggle, secSysToggle;
@@ -13,6 +14,8 @@ boolean locked = false;
 int Y_AXIS = 1;
 int X_AXIS = 2;
 color b1, b2, c1, c2;
+final int screenSizeX = 800;
+final int screenSizeY = 1500;
 
 void setup() {
   frameRate(60);
@@ -35,12 +38,15 @@ void setup() {
   humidToggle = new ToggleWithText(120, 1000, "HUMIDITY");
   secSysToggle = new ToggleWithText(120, 1100, "SECURITY SYSTEM");
   enableButton = new MasterEnable(400, 1300, 700, 150);
+  menuButton = new MenuButton(20, 20);
 }
 
 void draw() {
   //background(255, 255, 255);
   //setLinearGradient(0, 0, 800, 1500, color(151, 200, 240), color(255, 255, 255), Y_AXIS);  
   image(img, 0, 0);
+  //----------------------- Menu Button ------------------------------------
+  menuButton.display();
   //----------------------- Draw the title ---------------------------------
   writeTextCenter("SMART HOME 2021", (int)(width * .61), 40, 60, color(255, 255, 255)); //Title in Tmed Font
   writeTextLeft("By R. Forsyth and J. Michaud", 20, height - 30, 25, color(255, 255, 255)); //FWD

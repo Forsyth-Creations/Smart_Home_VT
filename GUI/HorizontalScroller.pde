@@ -5,7 +5,7 @@ class HScrollbar {
   float sposMin, sposMax; // max and min values of slider
   int loose;              // how loose/heavy
   boolean over;           // is the mouse over the slider?
-  boolean locked;
+  boolean locked = false;
   float ratio;
 
   HScrollbar (float xp, float yp, int sw, int sh, int l) {
@@ -73,5 +73,10 @@ class HScrollbar {
     // Convert spos to be values between
     // 0 and the total width of the scrollbar
     return spos * ratio;
+  }
+  
+  void setLock(boolean state)
+  {
+    locked = state;
   }
 }

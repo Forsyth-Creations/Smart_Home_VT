@@ -1,7 +1,7 @@
 /**
  * 
- * This file was written by Henry Forsyth
- * Februrary 15, 2021
+ * This file was written by Henry Forsyth and Jack Michaud
+ * March 26, 2021
  * 
  * 
  * The objective of this file is to
@@ -28,11 +28,11 @@ boolean Humidity::init()
 {
     if (this->Active())
     {
-    Serial.println("Humidity Sensor - Online");
+        Serial.println("Humidity Sensor - Online");
     }
     else
     {
-    Serial.println("Humidity Sensor Issue Detected");
+        Serial.println("Humidity Sensor Issue Detected");
     }
     return true;
 }
@@ -68,7 +68,7 @@ int Humidity::Active()
     {
         return true;
     }
-return false;
+    return false;
 }
 
 #endif

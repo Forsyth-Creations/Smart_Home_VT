@@ -70,4 +70,9 @@ class MasterEnable
   {
    state = input; 
   }
+  
+    void setLock(boolean state)
+  {
+    locked = state;
+  }
 }

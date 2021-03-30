@@ -12,16 +12,6 @@
   // Make sure to open the port at the same speed Wiring is using (9600bps) 
 
 
-
-
-
-
-
-
-
-
- 
-
   // Define and create rectangle button #2
   //x = 90;
   //y = 100; 
