@@ -41,8 +41,11 @@ int Humidity::getValue()
 {
     int value = analogRead(humiditypin); //converts Analog to Digital
     int Humidity_Percent = (0.00155515 * pow(value, 2)) + 30;
+    pinMode(6,OUTPUT);
+    analogWrite(6,127);
     #ifdef DEBUG
 
+if (value>0){
     if (value > 0 && value < 215)
     {
         Serial.print("The Humidity is about: ");
@@ -56,6 +59,7 @@ int Humidity::getValue()
         Serial.println("Humidity too High. Please check your configuration");
         //delay(1000);
     }
+}
     #endif
 
     return Humidity_Percent;
