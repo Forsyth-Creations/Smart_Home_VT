@@ -58,7 +58,7 @@ double Temp::getTemp(double BALANCE_RESISTOR)
     //----------------- Calculate Average Temp --------------------------------------
     for (int i = 0; i < SAMPLE_NUMBER; i++)
     {
-        adcSamples[i] = analogRead(tempPin); // read from pin and store
+        adcSamples[i] = analogRead(TEMP_PIN); // read from pin and store
         delay(10);                                 // wait 10 milliseconds
     }
 
@@ -78,10 +78,11 @@ double Temp::getTemp(double BALANCE_RESISTOR)
     #endif
 
     if (tempRead){
-        digitalWrite(12, HIGH);
+        digitalWrite(TEMP_LED_PIN, HIGH);
     }
-    else{
-        digitalWrite(12, LOW);
+    else
+    {
+        digitalWrite(TEMP_LED_PIN, LOW);
     }
 
     return tempRead;

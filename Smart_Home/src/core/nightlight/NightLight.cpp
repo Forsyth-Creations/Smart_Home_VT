@@ -39,7 +39,7 @@ int NightLight::getSensorState() //default
 
 int NightLight::getSensorState(int threshold) //can feed it a threshold
 {
-    int value = analogRead(photoPin);
+    int value = analogRead(PHOTO_PIN);
     int returnState = 0; 
 
     #ifdef DEBUG

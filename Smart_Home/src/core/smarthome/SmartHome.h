@@ -9,6 +9,7 @@
 #define SmartHome_h
 #include "Arduino.h"
 #include "Configuration.h"
+#include "core\pins.h"
 
 //-----------Include all necessary libraries for this project----------
 
