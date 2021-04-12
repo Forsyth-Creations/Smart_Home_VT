@@ -6,6 +6,7 @@ class HScrollbar {
   int loose;              // how loose/heavy
   boolean over;           // is the mouse over the slider?
   boolean locked = false;
+  boolean holding = false;
   float ratio;
 
   HScrollbar (float xp, float yp, int sw, int sh, int l) {
@@ -23,22 +24,26 @@ class HScrollbar {
   }
 
   void update() {
-    if (overEvent()) {
-      over = true;
-    } else {
-      over = false;
-    }
-    if (mousePressed && over) {
-      locked = true;
-    }
-    if (!mousePressed) {
-      locked = false;
-    }
-    if (locked) {
-      newspos = constrain(mouseX-sheight/2, sposMin, sposMax);
-    }
-    if (abs(newspos - spos) > 1) {
-      spos = spos + (newspos-spos)/loose;
+    if (!locked)
+    {
+      if (overEvent()) {
+        over = true;
+      } 
+      else {
+        over = false;
+      }
+      if (mousePressed && over) {
+        holding = true;
+      }
+      if (!mousePressed) {
+        holding = false;
+      }
+      if (holding) {
+        newspos = constrain(mouseX-sheight/2, sposMin, sposMax);
+      }
+      if (abs(newspos - spos) > 1) {
+        spos = spos + (newspos-spos)/loose;
+      }
     }
   }
 
@@ -48,7 +53,7 @@ class HScrollbar {
 
   boolean overEvent() {
     if (mouseX > xpos && mouseX < xpos+swidth &&
-       mouseY > ypos && mouseY < ypos+sheight) {
+      mouseY > ypos && mouseY < ypos+sheight) {
       return true;
     } else {
       return false;
@@ -56,17 +61,20 @@ class HScrollbar {
   }
 
   void display() {
-    noStroke();
-    stroke(color(255, 255, 255));
-    strokeWeight(10);
-    line(xpos, ypos, xpos + swidth, ypos);
-    if (over || locked) {
-      fill(100, 100, 100);
-    } else {
-      fill(255, 255, 255);
+    if (!locked)
+    {
+      noStroke();
+      stroke(color(255, 255, 255));
+      strokeWeight(10);
+      line(xpos, ypos, xpos + swidth, ypos);
+      if (over || locked) {
+        fill(100, 100, 100);
+      } else {
+        fill(255, 255, 255);
+      }
+      noStroke();
+      rect(spos, ypos - 25, sheight, 50, 10);
     }
-    noStroke();
-    rect(spos, ypos - 25, sheight, 50, 10);
   }
 
   float getPos() {
@@ -74,7 +82,7 @@ class HScrollbar {
     // 0 and the total width of the scrollbar
     return spos * ratio;
   }
-  
+
   void setLock(boolean state)
   {
     locked = state;

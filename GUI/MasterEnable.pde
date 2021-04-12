@@ -13,23 +13,25 @@ class MasterEnable
     w = _w;
     h = _h;
   }
-  
+
   void display()
   {
-    isMouseOn();
-    fill(fillColor);
-    if (!state)
-    { //should be on
-      rect(x - w/2, y - h/2, w, h, 40);
-      writeTextCenter("ENABLE ALL", x, y - 10, 60, color(0,0,0));
-    }
-    else 
+    if (!locked)
     {
-      rect(x - w/2, y - h/2, w, h, 40);
-      writeTextCenter("DISABLE ALL", x, y - 10, 60, color(0,0,0));
+      isMouseOn();
+      fill(fillColor);
+      if (!state)
+      { //should be on
+        rect(x - w/2, y - h/2, w, h, 40);
+        writeTextCenter("ENABLE ALL", x, y - 10, 60, color(0, 0, 0));
+      } else 
+      {
+        rect(x - w/2, y - h/2, w, h, 40);
+        writeTextCenter("DISABLE ALL", x, y - 10, 60, color(0, 0, 0));
+      }
     }
   }
-  
+
   boolean isMouseOn()
   {
     if ((mouseX > x - w/2) && (mouseX < x + w/2) && (mouseY > y - h/2) && (mouseY < y + h/2))
@@ -43,14 +45,13 @@ class MasterEnable
         delay(50);
       }
       return true;
-    }
-    else
+    } else
     {
       fillColor = color(255, 255, 255);
       return false;
     }
   }
-  
+
   boolean getChangedState()
   {
     if (hasChanged)
@@ -60,18 +61,18 @@ class MasterEnable
     }
     return false;
   }
-  
+
   boolean getState()
   {
     return state;
   }
-  
+
   void setState(boolean input)
   {
-   state = input; 
+    state = input;
   }
-  
-    void setLock(boolean state)
+
+  void setLock(boolean state)
   {
     locked = state;
   }

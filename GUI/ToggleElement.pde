@@ -93,7 +93,10 @@ class ToggleWithText extends Toggle
   }
   void display()
   {
+    if (!locked)
+    {
     super.display();
     writeTextLeft(text, x + 100, y - 10, 49, color(255, 255, 255));
+    }
   }
 }

@@ -39,7 +39,7 @@ class MenuButton
       fill(0, 0, 0, 200);
       rect(0, 0, screenSizeX, screenSizeY);
       lockAll(true);
-      println("Hello");
+      //println("Hello");
     }
   }
   void isClicked()

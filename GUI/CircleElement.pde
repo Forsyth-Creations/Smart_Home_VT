@@ -3,6 +3,8 @@ class Circle {
   int x, y, size, input;
   color basecolor, loadingColor;
   boolean locked = false;
+  boolean disabled = false;
+  boolean hide = false;
 
   Circle(int ix, int iy, int isize, color icolor, color iloading)
   {
@@ -28,19 +30,22 @@ class Circle {
   }
   void display() 
   { 
-    noFill();
-    strokeWeight(16);
-    ellipse(x, y, size/2, size/2);
+    if (!locked)
+    {
+      noFill();
+      strokeWeight(16);
+      ellipse(x, y, size/2, size/2);
+    }
   }
   void disable()
   {
-    locked = true;
+    disabled = true;
   }
   void enable()
   {
-    locked = false;
+    disabled = false;
   }
-  
+
   void setLock(boolean state)
   {
     locked = state;
@@ -65,7 +70,7 @@ class TextCircle extends Circle
   }
   void update(int percentage, color icolor, color iloading, String _txt)
   {
-    if (!locked)
+    if (!locked && !disabled)
     {
       super.update(percentage, icolor, iloading);
       txt = _txt;
@@ -79,10 +84,12 @@ class TextCircle extends Circle
   }
   void disable()
   {
-    locked = true;
-    writeTextCenter("Disabled", x, y - 10, fontSize, fontColor);
+    if (!locked)
+    {
+      disabled = true;
+      writeTextCenter("Disabled", x, y - 10, fontSize, fontColor);
+    }
   }
-
 }
 /**
  This class must be constructed with three loading colors. Their designation is as follows:
@@ -110,19 +117,21 @@ class TemperatureCircle extends TextCircle
 
   void update(int degrees)
   {
-
-    if (degrees > lowestBound && degrees <= middleLowBound) //first condition satisifed
+    if (!locked)
     {
-      super.update((int)(abs(degrees)), basecolor, loading1, str(degrees)+  "°");
-    } else if (degrees > middleLowBound && degrees <= middleHighBound) //second condition satisifed
-    {
-      super.update((int)(abs(degrees)), basecolor, loading2, str(degrees)+  "°");
-    } else if (degrees > middleHighBound && degrees <= highestBound) //third condition satisifed
-    {
-      super.update((int)(abs(degrees - 100)), basecolor, loading3, str(degrees) +  "°");
-    } else 
-    {
-      writeTextCenter("Unknown\nTemp", super.x, super.y, fontSize, fontColor);
+      if (degrees > lowestBound && degrees <= middleLowBound) //first condition satisifed
+      {
+        super.update((int)(abs(degrees)), basecolor, loading1, str(degrees)+  "°");
+      } else if (degrees > middleLowBound && degrees <= middleHighBound) //second condition satisifed
+      {
+        super.update((int)(abs(degrees)), basecolor, loading2, str(degrees)+  "°");
+      } else if (degrees > middleHighBound && degrees <= highestBound) //third condition satisifed
+      {
+        super.update((int)(abs(degrees - 100)), basecolor, loading3, str(degrees) +  "°");
+      } else 
+      {
+        writeTextCenter("Unknown\nTemp", super.x, super.y, fontSize, fontColor);
+      }
     }
   }
 }

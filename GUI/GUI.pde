@@ -22,7 +22,6 @@ void setup() {
   //---------------- set up window ----------------------
   size(800, 1500);
   setLinearGradient(0, 0, 800, 1500, color(151, 200, 218), color(255, 255, 255), Y_AXIS);
-  //port = new Serial(this, Serial.list()[4], 9600);
   //-------------------------- Load Background Image ----------------------------------
   img = loadImage("background.png");
   //-------------------------- Circular Elements --------------------------------------
@@ -47,23 +46,31 @@ void draw() {
   image(img, 0, 0);
   //----------------------- Menu Button ------------------------------------
   menuButton.display();
+  locked = menuButton.getState();
   //----------------------- Draw the title ---------------------------------
   writeTextCenter("SMART HOME 2021", (int)(width * .61), 40, 60, color(255, 255, 255)); //Title in Tmed Font
   writeTextLeft("By R. Forsyth and J. Michaud", 20, height - 30, 25, color(255, 255, 255)); //FWD
   //----------------------- Update the Sensor Data -------------------------
   temp.update(80);
   delay(50);
-  humidity.update(50, color(255, 255, 255), color(0, 0, 255), "33%");
+  humidity.update(33, color(255, 255, 255), color(0, 0, 255), "33%");
   //------------------------ Show Slider -----------------------------------
-  hs1.update();
-  hs1.display();
-  //------------------------ Show Text Next To Slider ----------------------
-  writeTextCenter("Set Temp:", 650, 530, 40, color(255, 255, 255));
-  writeTextCenter(str(round(map(hs1.getPos(), 75, 525, 50, 90))) + "°", 650, 580, 40, color(255, 255, 255));
-  //------------------------ Write Header Text -----------------------------
-  writeTextLeft("Active Elements", 50, 650, 60, color(255, 255, 255)); //Title in Tmed Font
-  stroke(255, 255, 255);
-  line(40, 700, 600, 700);
+  if (!locked)
+  {
+    if (tempToggle.getState())
+    {
+      hs1.update();
+      hs1.display();
+    //------------------------ Show Text Next To Slider ----------------------
+    writeTextCenter("Set Temp:", 650, 530, 40, color(255, 255, 255));
+    writeTextCenter(str(round(map(hs1.getPos(), 75, 525, 50, 90))) + "°", 650, 580, 40, color(255, 255, 255));
+    }
+    //------------------------ Write Header Text -----------------------------
+    writeTextLeft("Active Elements", 50, 650, 60, color(255, 255, 255)); //Title in Tmed Font
+    stroke(255, 255, 255);
+    strokeWeight(10);
+    line(40, 700, 600, 700);
+  }
   //----------------------- Display User Elements --------------------------
   nightLightToggle.display();
   tempToggle.display();
@@ -71,7 +78,7 @@ void draw() {
   secSysToggle.display();
   //------------------------ enable button ---------------------------------
   enableButton.display();
-  
+
   //------------ use master enabing button to change all states ------------
   if (enableButton.getChangedState())
   {
@@ -83,8 +90,7 @@ void draw() {
   if (nightLightToggle.getState() && tempToggle.getState() && humidToggle.getState() && secSysToggle.getState())
   {
     enableButton.setState(true);
-  }
-  else if (!nightLightToggle.getState() && !tempToggle.getState() && !humidToggle.getState() && !secSysToggle.getState())
+  } else if (!nightLightToggle.getState() && !tempToggle.getState() && !humidToggle.getState() && !secSysToggle.getState())
   {
     enableButton.setState(false);
   }
@@ -93,9 +99,10 @@ void draw() {
     temp.disable();
   else
     temp.enable();
-  
+
   if (!humidToggle.getState())
     humidity.disable();
   else
     humidity.enable();
+  //------------------------- Launch the Menu, if Selected ---------------
 }
