@@ -121,11 +121,7 @@ boolean SmartHome::run()
     #endif
 
     #ifdef HUMIDITY_SENSOR
-<<<<<<< HEAD
-        digitalWrite(humidityLEDpin,_Humidity.init());
-=======
         //digitalWrite(humidityLEDpin, _Humidity.init());
->>>>>>> eea17c61cb90b83a1c6c5f420680d66fa47d20ba
     #endif
 
     #ifdef DEBUG
