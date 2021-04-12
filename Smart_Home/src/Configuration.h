@@ -20,7 +20,7 @@
 #define ACTIVATE_OLCD
 
 //Activates the Ultrasonic functionality
-//#define SECURITY_SYSTEM
+#define SECURITY_SYSTEM
 
 //Activates the Night Light functionality, including sensor and lighting
 //#define NIGHT_LIGHT
@@ -28,7 +28,7 @@
 //Activates the Speaker functionality
 #define SPEAKER
 
-//#define TEMP_SENSOR
+#define TEMP_SENSOR
 
 #define HUMIDITY_SENSOR
 
