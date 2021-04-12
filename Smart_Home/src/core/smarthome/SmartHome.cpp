@@ -110,17 +110,18 @@ boolean SmartHome::run()
         //run headless
          Serial.println("Running Headless");
     }
-    delay(200);
+    //delay(200);
+    
     #ifdef TEMP_SENSOR
         _Temp.getTemp();
     #endif
 
     #ifdef NIGHT_LIGHT
-        digitalWrite(nightLightPin, _Light.getSensorState(100));
+        digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(100));
     #endif
 
     #ifdef HUMIDITY_SENSOR
-        digitalWrite(humidityLEDpin, _Humidity.init());
+        //digitalWrite(humidityLEDpin, _Humidity.init());
     #endif
 
     #ifdef DEBUG

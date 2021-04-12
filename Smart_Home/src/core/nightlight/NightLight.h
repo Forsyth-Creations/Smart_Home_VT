@@ -19,8 +19,8 @@ class NightLight
     int getSensorState();
     int getSensorState(int theshold);
   private:
-    int _sensorPin = photoPin;
-    int _ledPin = nightLightPin;
+    int _sensorPin = PHOTO_PIN;
+    int _ledPin = NIGHT_LIGHT_PIN;
 };
 
 #endif

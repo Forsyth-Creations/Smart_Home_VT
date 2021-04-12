@@ -6,12 +6,14 @@
  **/
 #include "Arduino.h"
 
-#define photoPin A0
-#define nightLightPin 13
-#define tempPin A1
-#define speakerPin 3
-#define screenSCL A5
-#define screenSDA A4
+#define PHOTO_PIN A0
+#define TEMP_PIN A1
+#define HUMIDITY_PIN A2
+#define SCREEN_SDA A4
+#define SCREEN_SCL A5
 
-#define humiditypin A2
-#define humidityLEDpin 10
+#define NIGHT_LIGHT_PIN 13
+#define TEMP_LED_PIN 12
+#define SPEAKER_PIN 3
+
+//#define HUMIDITY_LED_PIN 6

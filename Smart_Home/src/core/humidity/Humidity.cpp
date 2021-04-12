@@ -16,12 +16,14 @@
 
 #include "Configuration.h"
 #include "Humidity.h"
+#include "core\pins.h"
 
 #ifdef HUMIDITY_SENSOR
 
 //init code
 Humidity::Humidity()
 {
+    
 }
 
 boolean Humidity::init()
@@ -39,29 +41,25 @@ boolean Humidity::init()
 
 int Humidity::getValue()
 {
-    int value = analogRead(humiditypin); //converts Analog to Digital
+    int value = analogRead(HUMIDITY_PIN); //converts Analog to Digital
     int Humidity_Percent = (0.00155515 * pow(value, 2)) + 30;
-    pinMode(6,OUTPUT);
-    analogWrite(6,127);
-    #ifdef DEBUG
 
-if (value>0){
-    if (value > 0 && value < 215)
+    if (value > 0)
     {
-        Serial.print("The Humidity is about: ");
-        Serial.print(Humidity_Percent);
-        Serial.print("%");
-        Serial.println("");
-        //delay(1000);
+        if (value > 0 && value < 215)
+        {
+            Serial.print("The Humidity is about: ");
+            Serial.print(Humidity_Percent);
+            Serial.print("%");
+            Serial.println("");
+            //delay(1000);
+        }
+        else
+        {
+            Serial.println("Humidity too High. Please check your configuration");
+            //delay(1000);
+        }
     }
-    else
-    {
-        Serial.println("Humidity too High. Please check your configuration");
-        //delay(1000);
-    }
-}
-    #endif
-
     return Humidity_Percent;
 }
 

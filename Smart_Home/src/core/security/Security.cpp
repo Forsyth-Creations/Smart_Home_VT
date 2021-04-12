@@ -28,7 +28,7 @@
 
     boolean Security::init()
     {
-            Serial.println("Security System - Online");
+        Serial.println("Security System - Online");
     }
 
 #endif
