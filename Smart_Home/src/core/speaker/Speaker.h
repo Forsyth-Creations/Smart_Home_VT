@@ -14,13 +14,29 @@
 #include "core\pins.h"
 #include "Arduino.h"
 #include "Speaker.h"
+#include "Words.h"
 
 class Speaker
 {
   public:
     Speaker();
     boolean init();
+    void sayIntruderAlert();
   private:
+    Talkie voice;
 };
 
 #endif
+
+// #if defined(__AVR_ATmega32U4__)
+//     while (!Serial); //delay for Leonardo, but this loops forever for Maple Serial
+// #endif
+//     // Just to know which program is running on my Arduino
+//     Serial.println(F("START " __FILE__ " from " __DATE__ "\r\nUsing library version " VERSION_TALKIE));
+
+// //    voice.doNotUseUseInvertedOutput();
+// #if defined(TEENSYDUINO)
+//     pinMode(5, OUTPUT);
+//     digitalWrite(5, HIGH); //Enable Amplified PROP shield
+// #endif
+//   pinMode(3, OUTPUT);

@@ -17,18 +17,31 @@
 
 #include "Configuration.h"
 #include "Speaker.h"
+#include "Talkie.h"
+//#include "Words.h"
 
 #ifdef SPEAKER
 
     //init code
     Speaker::Speaker()
     {
-            
+        pinMode(SPEAKER_PIN, OUTPUT);
     }
 
     boolean Speaker::init()
     {
             Serial.println("Speaker - Online");
+            voice.say(spt_HELLO);   
+            voice.say(spt_I); 
+            voice.say(spt_AM); 
+            voice.say(READY_TO_START);  
+            return true;
+    }
+
+    void Speaker::sayIntruderAlert()
+    {
+        voice.say(spINTRUDER);
+        voice.say(spALERT);
     }
 
 #endif
