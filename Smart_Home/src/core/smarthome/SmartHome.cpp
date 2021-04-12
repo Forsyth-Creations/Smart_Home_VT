@@ -27,10 +27,12 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
     _HC06 = HC06();
 #endif
 
-#ifdef TEMP_SENSOR
-    //weather station
+#ifdef TEMP_SENSOR //weather station part 1
     _Temp = Temp();
-    //_Humidity = Humidity();
+#endif
+
+#ifdef HUMIDITY_SENSOR //weather station part 2
+    _Humidity = Humidity();
 #endif
 
 #ifdef NIGHT_LIGHT
@@ -52,45 +54,48 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
     //start speaker
     _Speaker = Speaker();
 #endif
-//Serial.println("Running smart home");
+    //Serial.println("Running smart home");
 }
 
 boolean SmartHome::init() //runs a test script on each piece to make sure everything is moving slowly
 {
 #ifdef DEBUG
     Serial.println("\nSmart Home - DEBUG MODE ACTIVE\n");
-    //to-do: make sure all attributes of the projet (aka any requirements) are built out below
-    //this #ifdef structure repeats a bunch, so may be wise to build out one and then copy-paste
-    #ifdef HC06_ACTIVE
-        //start bluetooth
-        _HC06.init();
-    #endif
+//to-do: make sure all attributes of the projet (aka any requirements) are built out below
+//this #ifdef structure repeats a bunch, so may be wise to build out one and then copy-paste
+#ifdef HC06_ACTIVE
+    //start bluetooth
+    _HC06.init();
+#endif
 
-    #ifdef TEMP_SENSOR
+#ifdef TEMP_SENSOR
     //weather station
-        _Temp.init();
-        _Humidity.init();
-    #endif
+    _Temp.init();
+#endif
 
-    #ifdef NIGHT_LIGHT
-        //start night light
-        _Light.init();
-    #endif
+#ifdef HUMIDITY_SENSOR
+    _Humidity.init();
+#endif
 
-    #ifdef ACTIVATE_OLCD
-        //start OLCD
-        _Screen.init();
-    #endif
+#ifdef NIGHT_LIGHT
+    //start night light
+    _Light.init();
+#endif
 
-    #ifdef SECURITY_SYSTEM
-        //start ultrasonic
-        _Security.init();
-    #endif
+#ifdef ACTIVATE_OLCD
+    //start OLCD
+    _Screen.init();
+#endif
 
-    #ifdef SPEAKER
-        //start speaker
-        _Speaker.init();
-    #endif
+#ifdef SECURITY_SYSTEM
+    //start ultrasonic
+    _Security.init();
+#endif
+
+#ifdef SPEAKER
+    //start speaker
+    _Speaker.init();
+#endif
 
 #endif
     return true;
@@ -108,29 +113,29 @@ boolean SmartHome::run()
     else
     {
         //run headless
-         Serial.println("Running Headless");
+        Serial.println("Running Headless");
     }
     //delay(200);
 
-    #ifdef TEMP_SENSOR
-        _Temp.getTemp();
-    #endif
+#ifdef TEMP_SENSOR
+    _Temp.getTemp();
+#endif
 
-    #ifdef NIGHT_LIGHT
-        digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(100));
-    #endif
+#ifdef NIGHT_LIGHT
+    digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(100));
+#endif
 
-    #ifdef HUMIDITY_SENSOR
-        _Humidity.getValue();
-        //digitalWrite(humidityLEDpin, _Humidity.init());
-    #endif
+#ifdef HUMIDITY_SENSOR
+    _Humidity.getValue();
+    //digitalWrite(humidityLEDpin, _Humidity.init());
+#endif
 
-    #ifdef DEBUG
-        Serial.println("----------------------------------------------");
-    #endif
+#ifdef DEBUG
+    Serial.println("----------------------------------------------");
+#endif
 
     return true;
     //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
-    
+
     //inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
 }

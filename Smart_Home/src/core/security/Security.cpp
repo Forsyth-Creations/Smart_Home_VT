@@ -13,7 +13,6 @@
  * Should debugging be needed, disable all other features and simply
  * enable the "DEBUG" variable. This will output appropriate unit testing values
  **/
-#include <NewPing.h>
 
 #include "Configuration.h"
 #include "Security.h"
@@ -25,6 +24,8 @@
 //init code
 Security::Security()
 {
+    NewPing _sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
+    sonar = _sonar;
     pinMode(USPOWER_PIN, OUTPUT);
     digitalWrite(USPOWER_PIN, HIGH);
 }

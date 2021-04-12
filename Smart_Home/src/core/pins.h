@@ -16,7 +16,7 @@
 #define ECHO_PIN     11  // Arduino pin tied to echo pin on the ultrasonic sensor.
 
 #define NIGHT_LIGHT_PIN 13
-#define TEMP_LED_PIN 12
+#define TEMP_LED_PIN 10
 #define SPEAKER_PIN 3
 
 //#define HUMIDITY_LED_PIN 6
