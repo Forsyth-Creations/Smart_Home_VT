@@ -13,6 +13,7 @@
  * Should debugging be needed, disable all other features and simply
  * enable the "DEBUG" variable. This will output appropriate unit testing values
  **/
+#include <NewPing.h>
 
 #include "Configuration.h"
 #include "Security.h"
@@ -33,7 +34,7 @@ boolean Security::init()
     Serial.println("Security System - Online");
 }
 
-int Security::getTemp()
+int Security::getDistance()
 {
     unsigned int cm = sonar.ping_cm();
     if (cm != 0)
