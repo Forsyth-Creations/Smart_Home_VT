@@ -12,6 +12,9 @@
 #define SCREEN_SDA A4
 #define SCREEN_SCL A5
 
+#define TRIGGER_PIN  12  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define ECHO_PIN     11  // Arduino pin tied to echo pin on the ultrasonic sensor.
+
 #define NIGHT_LIGHT_PIN 13
 #define TEMP_LED_PIN 12
 #define SPEAKER_PIN 3
