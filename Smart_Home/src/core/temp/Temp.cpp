@@ -16,12 +16,14 @@
 
 #include "Configuration.h"
 #include "Temp.h"
+#define USED_RESISTANCE 9940
 
 #ifdef TEMP_SENSOR
 
 //init code
 Temp::Temp()
 {
+
 }
 
 boolean Temp::init(double bVal)
@@ -39,14 +41,14 @@ boolean Temp::init(void)
 
 double Temp::getTemp()
 {
-    return getTemp(9940);
+    return getTemp(USED_RESISTANCE);
 }
 
 double Temp::getTemp(double BALANCE_RESISTOR)
 {
     //Formula:
-    //      1
-    // ------------
+    //            1
+    // ----------------------
     // (ln(R1/R2)/B) + (1/R2)
     
     const int SAMPLE_NUMBER = 10;
