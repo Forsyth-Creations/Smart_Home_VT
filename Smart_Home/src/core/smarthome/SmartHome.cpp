@@ -106,6 +106,7 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
 
 boolean SmartHome::run()
 {
+    
     //run the smart home from here. This is basically the new main
     //for this small project
     // if (Serial.available())
@@ -139,7 +140,6 @@ boolean SmartHome::run()
 
 #ifdef ACTIVATE_OLCD
     _Screen.Weather_Station();
-    //digitalWrite(humidityLEDpin, _Humidity.init());
 #endif
 
 #ifdef DEBUG
@@ -147,7 +147,8 @@ boolean SmartHome::run()
 #endif
 
     return true;
-    //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
 
-    //inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
+//check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
+//inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
+
 }
