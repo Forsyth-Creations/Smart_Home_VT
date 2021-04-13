@@ -10,52 +10,56 @@
 #include "Arduino.h"
 #include "Configuration.h"
 #include "core\pins.h"
+#include <SoftwareSerial.h>
 
 //-----------Include all necessary libraries for this project----------
 
 //To-to: Ensure all libraries are being imported properly
 
-  #ifdef HC06_ACTIVE
-      //start bluetooth
-      #include "core\bluetooth\HC06.h"
-  #endif
+#ifdef HC06_ACTIVE
+//start bluetooth
+#include "core\bluetooth\HC06.h"
+#endif
 
-  #ifdef TEMP_SENSOR
-      //weather station
-      #include "core\humidity\Humidity.h"
-      #include "core\temp\Temp.h"
-  #endif
+#ifdef TEMP_SENSOR
+//weather station
+    #include "core\temp\Temp.h"
+#endif
 
-  #ifdef NIGHT_LIGHT
-      //start night light
-      #include "core\nightlight\NightLight.h"
-  #endif
+#ifdef HUMIDITY_SENSOR
+    #include "core\humidity\Humidity.h" 
+#endif
 
-  #ifdef ACTIVATE_OLCD
-      //start OLCD
-      #include "core\screen\Screen.h"
-  #endif
+#ifdef NIGHT_LIGHT
+//start night light
+#include "core\nightlight\NightLight.h"
+#endif
 
-  #ifdef SECURITY_SYSTEM
-      //start ultrasonic
-      #include "core\security\Security.h"
-  #endif
+#ifdef ACTIVATE_OLCD
+//start OLCD
+#include "core\screen\Screen.h"
+#endif
 
-  #ifdef SPEAKER
-      //start speaker
-      #include "core\speaker\Speaker.h"
-  #endif
+#ifdef SECURITY_SYSTEM
+//start ultrasonic
+#include "core\security\Security.h"
+#endif
+
+#ifdef SPEAKER
+//start speaker
+#include "core\speaker\Speaker.h"
+#endif
 //---------------------------------------------------------------------
 
 class SmartHome
 {
 public:
-  SmartHome();
-  boolean init();
-  boolean run();
+    SmartHome();
+    boolean init();
+    boolean run();
 
-//To-do: create all the object declations alongside their
-//appropriate libraries
+    //To-do: create all the object declations alongside their
+    //appropriate libraries
 
 private:
 #ifdef HC06_ACTIVE
@@ -66,6 +70,9 @@ private:
 #ifdef TEMP_SENSOR
     //weather station
     Temp _Temp;
+#endif
+
+#ifdef HUMIDITY_SENSOR
     Humidity _Humidity;
 #endif
 
@@ -88,7 +95,6 @@ private:
     //start speaker
     Speaker _Speaker;
 #endif
-
 };
 
 #endif

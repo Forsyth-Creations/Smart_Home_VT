@@ -66,9 +66,9 @@ double Temp::getTemp(double BALANCE_RESISTOR)
 
     for (int i = 0; i < SAMPLE_NUMBER; i++)
     {
-        adcAverage += adcSamples[i]; // add all samples up . . .
+        adcAverage += adcSamples[i]; // add all samples together
     }
-    adcAverage /= SAMPLE_NUMBER; // . . . average it w/ divide
+    adcAverage /= SAMPLE_NUMBER; // average it
 
     rThermistor = BALANCE_RESISTOR * ((MAX_ADC / adcAverage) - 1);
 

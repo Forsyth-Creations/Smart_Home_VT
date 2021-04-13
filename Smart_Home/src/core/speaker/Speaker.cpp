@@ -17,7 +17,6 @@
 
 #include "Configuration.h"
 #include "Speaker.h"
-#include "Talkie.h"
 //#include "Words.h"
 
 #ifdef SPEAKER
@@ -26,22 +25,24 @@
     Speaker::Speaker()
     {
         pinMode(SPEAKER_PIN, OUTPUT);
+        Talkie voice;
+        _voice = &voice;
     }
 
     boolean Speaker::init()
     {
         Serial.println("Speaker - Online");
-        voice.say(spt_HELLO);   
-        voice.say(spt_I); 
-        voice.say(spt_AM); 
-        voice.say(READY_TO_START);  
+        (*_voice).say(spt_HELLO);   
+        //_voice.say(spt_I); 
+        //_voice.say(spt_AM); 
+        //_voice.say(READY_TO_START);  
         return true;
     }
 
     void Speaker::sayIntruderAlert()
     {
-        voice.say(spINTRUDER);
-        voice.say(spALERT);
+        //_voice.say(spINTRUDER);
+        //_voice.say(spALERT);
     }
 
 

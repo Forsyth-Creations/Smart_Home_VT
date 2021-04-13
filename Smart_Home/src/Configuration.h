@@ -17,7 +17,7 @@
 //#define HC06_ACTIVE
 
 //Activates the OLCD functionality
-#define ACTIVATE_OLCD
+//#define ACTIVATE_OLCD
 
 //Activates the Ultrasonic functionality
 //#define SECURITY_SYSTEM
@@ -28,8 +28,8 @@
 //Activates the Speaker functionality
 #define SPEAKER
 
-#define TEMP_SENSOR
+//#define TEMP_SENSOR
 
-#define HUMIDITY_SENSOR
+//#define HUMIDITY_SENSOR
 
 //#define ACTIVATE_OLCD

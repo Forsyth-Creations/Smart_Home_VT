@@ -41,9 +41,9 @@ int Security::getDistance()
     if (cm != 0)
     {
         Serial.print("Ping: ");
-        Serial.print(cm); // Send ping, get distance in cm and print result (0 = outside set distance range)
+        Serial.print(cm); 
         Serial.println("cm");
-        delay(30); // Wait 30ms between pings (about 30 pings/sec). 29ms should be the shortest delay between pings.
+        delay(30);
     }
     if (cm <= 8 * 2.54 * 12 && cm != 0)
     {
@@ -55,7 +55,7 @@ int Security::getDistance()
         delay(50);                       // 50 mS is the minimum Off time to get clean restart
         digitalWrite(USPOWER_PIN, HIGH); // Adjust this value if your sensors don't read after reset
         delay(60);                       // Some sensors throw out a very short false echo after timeout
-        cm = sonar.ping_cm();                 // 5cm-10cm value.  If your sensors do not throw out
+        cm = sonar.ping_cm();            // 5cm-10cm value.  If your sensors do not throw out
                                          // this false echo, you can get rid of this delay and ping after power HIGH
     }                                    // Conversely, if you still get a false echo, you may need to increase
     return cm;
