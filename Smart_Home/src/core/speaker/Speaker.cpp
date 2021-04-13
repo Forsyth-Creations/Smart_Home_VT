@@ -14,36 +14,47 @@
  * enable the "DEBUG" variable. This will output appropriate unit testing values
  **/
 
-
 #include "Configuration.h"
 #include "Speaker.h"
+#include <SoftwareSerial.h>
+
 //#include "Words.h"
 
 #ifdef SPEAKER
 
-    //init code
-    Speaker::Speaker()
-    {
-        pinMode(SPEAKER_PIN, OUTPUT);
-        Talkie voice;
-        _voice = &voice;
-    }
+//init code
+Speaker::Speaker()
+{
+    pinMode(SPEAKER_PIN, OUTPUT);
+}
 
-    boolean Speaker::init()
-    {
-        Serial.println("Speaker - Online");
-        (*_voice).say(spt_HELLO);   
-        //_voice.say(spt_I); 
-        //_voice.say(spt_AM); 
-        //_voice.say(READY_TO_START);  
-        return true;
-    }
+boolean Speaker::init()
+{
+    Serial.println("Speaker - Online");
+    //(*_voice).say(spt_HELLO);
+    //_voice.say(spt_I);
+    //_voice.say(spt_AM);
+    //_voice.say(READY_TO_START);
+    return true;
+}
 
-    void Speaker::sayIntruderAlert()
-    {
-        //_voice.say(spINTRUDER);
-        //_voice.say(spALERT);
-    }
+void Speaker::sayGreeting()
+{
+    static Talkie voice;
+    //Serial.println("Saying Greeing");
+    voice.say(spt_HELLO);
+    voice.say(spt_I);
+    voice.say(spt_AM);
+    voice.say(READY_TO_START);
+    digitalWrite(SPEAKER_PIN, LOW);
+}
 
+void Speaker::sayIntruderAlert()
+{
+    static Talkie voice;
+    voice.say(spINTRUDER);
+    voice.say(spALERT);
+    digitalWrite(SPEAKER_PIN, LOW);
+}
 
 #endif
