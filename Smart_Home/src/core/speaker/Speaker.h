@@ -15,6 +15,8 @@
 #include "Arduino.h"
 #include "Speaker.h"
 #include "Words.h"
+#include "Talkie.h"
+
 
 class Speaker
 {
@@ -23,7 +25,7 @@ class Speaker
     boolean init();
     void sayIntruderAlert();
   private:
-    Talkie voice;
+    Talkie *_voice;
 };
 
 #endif
