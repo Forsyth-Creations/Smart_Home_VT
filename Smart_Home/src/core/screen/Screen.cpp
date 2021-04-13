@@ -89,23 +89,7 @@
 
     boolean Screen::Weather_Station()
     {
-           #include <SPI.h>
-           #include <Wire.h>
-           #include <Adafruit_GFX.h>
-           #include <Adafruit_SSD1306.h>
-
-            #define OLED_RESET 4
-            Adafruit_SSD1306 display(OLED_RESET);
-
-            void setup() {
-                // put your setup code here, to run once:
-            display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-            display.clearDisplay();
-
-            }
-
-            void loop() {
-            // put your main code here, to run repeatedly:
+            Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
             display.setTextSize(1);
             display.setTextColor(WHITE);
             display.setCursor(0,0);
@@ -113,7 +97,6 @@
             display.setCursor(0,10);
             display.print("Temperature: ");
             display.display();  
-            }
      }
 
 #endif

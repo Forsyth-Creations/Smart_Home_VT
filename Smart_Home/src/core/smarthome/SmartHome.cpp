@@ -137,6 +137,11 @@ boolean SmartHome::run()
     //digitalWrite(humidityLEDpin, _Humidity.init());
 #endif
 
+#ifdef ACTIVATE_OLCD
+    _Screen.Weather_Station();
+    //digitalWrite(humidityLEDpin, _Humidity.init());
+#endif
+
 #ifdef DEBUG
     Serial.println("----------------------------------------------");
 #endif
