@@ -63,6 +63,8 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
     Serial.println("\nSmart Home - DEBUG MODE ACTIVE\n");
 //to-do: make sure all attributes of the projet (aka any requirements) are built out below
 //this #ifdef structure repeats a bunch, so may be wise to build out one and then copy-paste
+#endif
+
 #ifdef HC06_ACTIVE
     //start bluetooth
     _HC06.init();
@@ -95,9 +97,10 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
 #ifdef SPEAKER
     //start speaker
     _Speaker.init();
+    //_Speaker.sayGreeting();
 #endif
 
-#endif
+
     return true;
 }
 
@@ -105,20 +108,24 @@ boolean SmartHome::run()
 {
     //run the smart home from here. This is basically the new main
     //for this small project
-    if (Serial.available())
-    {
-        //connected to GUI, be slave to it
-        Serial.println("Connected to Serial");
-    }
-    else
-    {
-        //run headless
-        Serial.println("Running Headless");
-    }
+    // if (Serial.available())
+    // {
+    //     //connected to GUI, be slave to it
+    //     Serial.println("Connected to Serial");
+    // }
+    // else
+    // {
+    //     //run headless
+    //     Serial.println("Running Headless");
+    // }
     //delay(200);
 
 #ifdef TEMP_SENSOR
     _Temp.getTemp();
+#endif
+
+#ifdef SPEAKER
+    //_Speaker.sayIntruderAlert();
 #endif
 
 #ifdef NIGHT_LIGHT

@@ -38,7 +38,7 @@ void setup() {
     pinMode(5, OUTPUT);
     digitalWrite(5, HIGH); //Enable Amplified PROP shield
 #endif
-  pinMode(3, OUTPUT);
+    pinMode(3, OUTPUT);
 
     voice.say(spTEMPERATURE);
     

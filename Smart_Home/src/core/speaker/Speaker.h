@@ -24,8 +24,8 @@ class Speaker
     Speaker();
     boolean init();
     void sayIntruderAlert();
+    void sayGreeting();
   private:
-    Talkie *_voice;
 };
 
 #endif
