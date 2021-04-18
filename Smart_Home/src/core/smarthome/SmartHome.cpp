@@ -104,7 +104,8 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
 
 boolean SmartHome::run()
 {
-    
+int humidityVal = 999;
+int tempVal = 999;
     //if (Serial.available())
     // {
     //     //connected to GUI, be slave to it
@@ -118,7 +119,7 @@ boolean SmartHome::run()
     //delay(200);
 
 #ifdef TEMP_SENSOR
-    _Temp.getTemp();
+    tempVal = _Temp.getTemp();
 #endif
 
 #ifdef SPEAKER
@@ -130,12 +131,12 @@ boolean SmartHome::run()
 #endif
 
 #ifdef HUMIDITY_SENSOR
-    _Humidity.getValue();
+    humidityVal = _Humidity.getValue();
     //digitalWrite(humidityLEDpin, _Humidity.init());
 #endif
 
 #ifdef ACTIVATE_OLCD
-    _Screen.displayValues();
+    _Screen.displayValues(humidityVal, tempVal);
 #endif
 
 #ifdef DEBUG
