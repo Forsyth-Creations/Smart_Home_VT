@@ -54,10 +54,10 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
     //start speaker
     _Speaker = Speaker();
 #endif
-    //Serial.println("Running smart home");
+    Serial.println("Running smart home");
 }
 
-boolean SmartHome::init() //runs a test script on each piece to make sure everything is moving slowly
+boolean SmartHome::init() //runs a test script on each piece to make sure everything is working correctly
 {
 #ifdef DEBUG
     Serial.println("\nSmart Home - DEBUG MODE ACTIVE\n");
@@ -99,17 +99,14 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
     _Speaker.init();
     //_Speaker.sayGreeting();
 #endif
-
-
     return true;
 }
 
 boolean SmartHome::run()
 {
-    
-    //run the smart home from here. This is basically the new main
-    //for this small project
-    // if (Serial.available())
+int humidityVal = 999;
+int tempVal = 999;
+    //if (Serial.available())
     // {
     //     //connected to GUI, be slave to it
     //     Serial.println("Connected to Serial");
@@ -122,7 +119,7 @@ boolean SmartHome::run()
     //delay(200);
 
 #ifdef TEMP_SENSOR
-    _Temp.getTemp();
+    tempVal = _Temp.getTemp();
 #endif
 
 #ifdef SPEAKER
@@ -134,21 +131,39 @@ boolean SmartHome::run()
 #endif
 
 #ifdef HUMIDITY_SENSOR
-    _Humidity.getValue();
+    humidityVal = _Humidity.getValue();
     //digitalWrite(humidityLEDpin, _Humidity.init());
 #endif
 
 #ifdef ACTIVATE_OLCD
-    _Screen.Weather_Station();
+    _Screen.displayValues(humidityVal, tempVal);
 #endif
 
 #ifdef DEBUG
-    Serial.println("----------------------------------------------");
+    //Serial.println("----------------------------------------------");
 #endif
 
     return true;
 
 //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
 //inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
-
 }
+
+
+
+// boolean SmartHome::FSM()
+// {
+//     if (Serial.available())
+//     {
+//         _message = Serial.readString();
+//         if (_message == NULL)
+//         {
+//             return false;
+//         }
+//         else
+//         {
+//             if (_message)
+//         }
+
+//     }
+// }

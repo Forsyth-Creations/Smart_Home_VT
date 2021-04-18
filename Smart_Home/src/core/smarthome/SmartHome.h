@@ -10,7 +10,7 @@
 #include "Arduino.h"
 #include "Configuration.h"
 #include "core\pins.h"
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 
 //-----------Include all necessary libraries for this project----------
 
@@ -62,6 +62,8 @@ public:
     //appropriate libraries
 
 private:
+boolean FSM();
+
 #ifdef HC06_ACTIVE
     //start bluetooth
     HC06 _HC06;
@@ -94,7 +96,10 @@ private:
 #ifdef SPEAKER
     //start speaker
     Speaker _Speaker;
-#endif
-};
 
+#endif
+    
+    String _message;
+
+};
 #endif

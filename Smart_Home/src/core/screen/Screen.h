@@ -19,18 +19,25 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <avr/pgmspace.h> 
 
 #define OLED_RESET 4
 #define SCREEN_ADDRESS 0x3C
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
+#define XPOS 0           // Indexes into the 'icons' array in function below
+#define YPOS 1
+#define DELTAY 2
 
 class Screen
 {
 public:
   Screen();
   boolean init();
-  void Weather_Station();
+  void displayValues();
+  void displayValues(int humVal, int tempVal);
+
 private:
+  Adafruit_SSD1306 display;
 };
 #endif

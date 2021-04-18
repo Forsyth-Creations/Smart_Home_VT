@@ -11,23 +11,25 @@
  * Written by Henry Forsyth, Februrary 11, 2021 2:00 AM
  * */
  
-#define DEBUG
+//#define DEBUG
 
 //Activates the bluetooth functionality
-//#define HC06_ACTIVE
+#define HC06_ACTIVE
 
 //Activates the OLCD functionality
 //#define ACTIVATE_OLCD
 
 //Activates the Ultrasonic functionality
-//#define SECURITY_SYSTEM
+#define SECURITY_SYSTEM
 
 //Activates the Night Light functionality, including sensor and lighting
 #define NIGHT_LIGHT
 
 //Activates the Speaker functionality
-//#define SPEAKER
+#define SPEAKER
 
-//#define TEMP_SENSOR
+//Activates the temperature functionality
+#define TEMP_SENSOR
 
-//#define HUMIDITY_SENSOR
+///Activates the humidity functionality
+#define HUMIDITY_SENSOR
