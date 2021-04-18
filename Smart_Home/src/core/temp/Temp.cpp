@@ -44,6 +44,17 @@ double Temp::getTemp()
     return getTemp(USED_RESISTANCE);
 }
 
+double Temp::getTempF()
+{
+    return convertCtoF(getTemp(USED_RESISTANCE));
+}
+
+double Temp::convertCtoF(double c)
+{
+    return (c * (9/5)) + 32;
+}
+
+
 double Temp::getTemp(double BALANCE_RESISTOR)
 {
     //Formula:

@@ -37,6 +37,8 @@ class Temp
     boolean init(void);
     double getTemp();
     double getTemp(double BALANCE_RESISTOR);
+    double getTempF();
+    double convertCtoF(double c);
   private:
     int _tempPin;
     double _bVal;

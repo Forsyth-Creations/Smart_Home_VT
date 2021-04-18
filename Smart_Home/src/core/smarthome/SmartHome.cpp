@@ -119,7 +119,7 @@ int tempVal = 999;
     //delay(200);
 
 #ifdef TEMP_SENSOR
-    tempVal = _Temp.getTemp();
+    tempVal = _Temp.getTempF();
 #endif
 
 #ifdef SPEAKER
