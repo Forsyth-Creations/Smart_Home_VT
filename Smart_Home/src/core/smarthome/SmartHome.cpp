@@ -99,8 +99,6 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
     _Speaker.init();
     //_Speaker.sayGreeting();
 #endif
-
-
     return true;
 }
 
