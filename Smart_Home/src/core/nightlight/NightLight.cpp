@@ -34,7 +34,7 @@ boolean NightLight::init()
 
 int NightLight::getSensorState() //default
 {
-    return getSensorState(40);
+    return getSensorState(100);
 }
 
 int NightLight::getSensorState(int threshold) //can feed it a threshold

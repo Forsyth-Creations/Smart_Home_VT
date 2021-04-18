@@ -138,7 +138,7 @@ int tempVal = 999;
 #endif
 
 #ifdef SPEAKER
-    _Speaker.sayNumber(humidityVal);
+    _Speaker.sayTheTempIs(tempVal);
 #endif
 
 #ifdef DEBUG
