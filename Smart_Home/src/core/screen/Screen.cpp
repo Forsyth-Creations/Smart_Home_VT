@@ -129,7 +129,7 @@ void Screen::displayValues(int humVal, int tempVal)
         display.setCursor(0, 0);
         display.println("Humidity: " + String(humVal));
         display.setCursor(0, 10);
-        display.print("Temperature: " + String(tempVal) + "°");
+        display.print("Temperature: " + String(tempVal) + " deg");
         display.display();
         
 }
