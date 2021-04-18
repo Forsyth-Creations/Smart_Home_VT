@@ -16,7 +16,7 @@
 
 #include "Configuration.h"
 #include "Speaker.h"
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 
 //#include "Words.h"
 

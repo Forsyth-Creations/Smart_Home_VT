@@ -22,7 +22,7 @@ class Security
     boolean init();
     int getDistance();
   private:
-    NewPing *sonar;
+    NewPing sonar;
 };
 
 #endif

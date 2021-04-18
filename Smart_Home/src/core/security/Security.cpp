@@ -14,6 +14,11 @@
  * enable the "DEBUG" variable. This will output appropriate unit testing values
  **/
 
+// Note that there is a conflict with the Tone.cpp file
+// (used for talkie) and the NewPing.cpp. I believe they
+// overlap on the timers they use for interupts. Since Tone comes
+// stock and NewPing is third parts, I am going to abandon NewPing and
+// simply use the pulseIn feature of the Arduino
 #include "Configuration.h"
 #include "Security.h"
 #define MAX_DISTANCE 300 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
@@ -23,16 +28,16 @@
 
 //init code
 Security::Security()
+    : sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE)
 {
-    NewPing _sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
-    sonar = _sonar;
-    pinMode(USPOWER_PIN, OUTPUT);
-    digitalWrite(USPOWER_PIN, HIGH);
 }
 
 boolean Security::init()
 {
     Serial.println("Security System - Online");
+    pinMode(USPOWER_PIN, OUTPUT);
+    digitalWrite(USPOWER_PIN, HIGH);
+    return true;
 }
 
 int Security::getDistance()

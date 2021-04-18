@@ -48,15 +48,19 @@ int Humidity::getValue()
     {
         if (value > 0 && value < 215)
         {
+            #ifdef DEBUG
             Serial.print("The Humidity is about: ");
             Serial.print(Humidity_Percent);
             Serial.print("%");
             Serial.println("");
+            #endif
             //delay(1000);
         }
         else
         {
+            #ifdef DEBUG
             Serial.println("Humidity too High. Please check your configuration");
+            #endif
             //delay(1000);
         }
     }

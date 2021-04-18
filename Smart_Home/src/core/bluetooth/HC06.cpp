@@ -29,6 +29,7 @@
     boolean HC06::init()
     {
         Serial.println("HC06 - Online");
+        return true;
     }
 
 #endif

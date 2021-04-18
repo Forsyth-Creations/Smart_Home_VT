@@ -30,7 +30,8 @@ class Screen
 public:
   Screen();
   boolean init();
-  void Weather_Station();
+  void displayValues();
 private:
+  Adafruit_SSD1306 display;
 };
 #endif
