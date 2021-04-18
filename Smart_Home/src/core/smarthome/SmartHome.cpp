@@ -122,9 +122,7 @@ int tempVal = 999;
     tempVal = _Temp.getTempF();
 #endif
 
-#ifdef SPEAKER
-    //_Speaker.sayIntruderAlert();
-#endif
+
 
 #ifdef NIGHT_LIGHT
     digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(100));
@@ -137,6 +135,10 @@ int tempVal = 999;
 
 #ifdef ACTIVATE_OLCD
     _Screen.displayValues(humidityVal, tempVal);
+#endif
+
+#ifdef SPEAKER
+    _Speaker.sayNumber(humidityVal);
 #endif
 
 #ifdef DEBUG

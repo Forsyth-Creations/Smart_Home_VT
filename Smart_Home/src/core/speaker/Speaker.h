@@ -25,7 +25,10 @@ class Speaker
     boolean init();
     void sayIntruderAlert();
     void sayGreeting();
+    void sayNumber(int number);
+    void sayTheTempIs(int number);
   private:
+    Talkie voice;
 };
 
 #endif
