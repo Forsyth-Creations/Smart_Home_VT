@@ -93,6 +93,7 @@ void Screen::Weather_Station()
         display.setCursor(0, 10);
         display.print("Temperature: ");
         display.display();
+        
 }
 
 #endif

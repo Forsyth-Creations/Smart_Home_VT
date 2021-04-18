@@ -41,6 +41,7 @@ boolean Humidity::init()
 
 int Humidity::getValue()
 {
+    analogWrite(6,127);
     int value = analogRead(HUMIDITY_PIN); //converts Analog to Digital
     int Humidity_Percent = (0.00155515 * pow(value, 2)) + 30;
 
