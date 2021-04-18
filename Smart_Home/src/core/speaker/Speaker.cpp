@@ -40,7 +40,7 @@ boolean Speaker::init()
 
 void Speaker::sayGreeting()
 {
-    //static Talkie voice;
+    static Talkie voice;
     //Serial.println("Saying Greeing");
     voice.say(spt_HELLO);
     voice.say(spt_I);
@@ -51,7 +51,7 @@ void Speaker::sayGreeting()
 
 void Speaker::sayIntruderAlert()
 {
-    //static Talkie voice;
+    static Talkie voice;
     voice.say(spINTRUDER);
     voice.say(spALERT);
     digitalWrite(SPEAKER_PIN, LOW);
@@ -60,6 +60,8 @@ void Speaker::sayIntruderAlert()
 void Speaker::sayNumber(int number)
 {
     //Zero to nine case
+    static Talkie voice;
+
     if (number >= 0 && number <= 19)
     {
         switch (number)
@@ -168,6 +170,7 @@ void Speaker::sayNumber(int number)
 }
 void Speaker::sayTheTempIs(int number)
 {
+    static Talkie voice;
     voice.say(sp3_THE);
     voice.say(spTEMPERATURE);
     voice.say(sp3_IS);
