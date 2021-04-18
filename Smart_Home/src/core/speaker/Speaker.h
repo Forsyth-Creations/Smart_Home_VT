@@ -28,7 +28,6 @@ class Speaker
     void sayNumber(int number);
     void sayTheTempIs(int number);
   private:
-    Talkie voice;
 };
 
 #endif
