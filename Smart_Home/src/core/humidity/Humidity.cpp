@@ -65,7 +65,7 @@ int Humidity::getValue()
             //delay(1000);
         }
     }
-    return Humidity_Percent;
+return Humidity_Percent;
 }
 
 int Humidity::Active()
