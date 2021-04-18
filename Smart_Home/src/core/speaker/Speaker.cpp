@@ -163,8 +163,11 @@ void Speaker::sayNumber(int number)
         }
         if (teen != 0)
         {
-        voice.say(sp3_AND);
-        sayNumber(teen);
+            if (teen > 10)
+            {
+                voice.say(sp3_AND);
+            }
+            sayNumber(teen);
         }
     }
 }
