@@ -53,7 +53,8 @@ int Humidity::getValue()
        value = analogRead(HUMIDITY_PIN); 
     }
 
-    int Humidity_Percent = (0.00155515 * pow(currentSample, 2)) + 30;
+    int Humidity_Percent = (0.0000209597 * pow(currentSample, 3)) + (-0.005584 * pow(currentSample, 2)) + (0.631282 * currentSample) + 23.9721;
+    //= (0.00155515 * pow(currentSample, 2)) + 30;
 
     if (value > 0)
     {
