@@ -43,7 +43,17 @@ int Humidity::getValue()
 {
     analogWrite(6,127);
     int value = analogRead(HUMIDITY_PIN); //converts Analog to Digital
-    int Humidity_Percent = (0.00155515 * pow(value, 2)) + 30;
+
+    int N;
+    int currentSample = 0;
+    for(N = 0;N<1000;N++){
+        if (value > currentSample){
+            currentSample = value;
+        }
+       value = analogRead(HUMIDITY_PIN); 
+    }
+
+    int Humidity_Percent = (0.00155515 * pow(currentSample, 2)) + 30;
 
     if (value > 0)
     {
@@ -65,6 +75,8 @@ int Humidity::getValue()
             //delay(1000);
         }
     }
+
+
 return Humidity_Percent;
 }
 
