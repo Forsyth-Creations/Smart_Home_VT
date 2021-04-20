@@ -18,7 +18,7 @@
 #include "Configuration.h"
 #include "lights.h"
 
-#ifdef NIGHT_LIGHT
+#ifdef LIGHTS
 
 //init code
 
