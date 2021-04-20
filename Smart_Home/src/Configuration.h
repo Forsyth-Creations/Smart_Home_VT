@@ -25,6 +25,9 @@
 //Activates the Night Light functionality, including sensor and lighting
 #define NIGHT_LIGHT
 
+//Activates the Lights functionality, including sensor and lighting
+#define LIGHTS
+
 //Activates the Speaker functionality
 #define SPEAKER
 

@@ -35,6 +35,11 @@
 #include "core\nightlight\NightLight.h"
 #endif
 
+#ifdef LIGHTS
+//start night light
+#include "core\lights\Lights.h"
+#endif
+
 #ifdef ACTIVATE_OLCD
 //start OLCD
 #include "core\screen\Screen.h"
@@ -81,6 +86,11 @@ boolean FSM();
 #ifdef NIGHT_LIGHT
     //start night light
     NightLight _Light;
+#endif
+
+#ifdef LIGHTS
+    //start night light
+    Lights _Lights;
 #endif
 
 #ifdef ACTIVATE_OLCD

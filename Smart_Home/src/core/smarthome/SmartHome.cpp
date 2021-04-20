@@ -40,6 +40,11 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
     _Light = NightLight();
 #endif
 
+#ifdef LIGHTS
+    //start lights
+    _Lights = Lights();
+#endif
+
 #ifdef ACTIVATE_OLCD
     //start OLCD
     _Screen = Screen();
@@ -84,6 +89,11 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
     _Light.init();
 #endif
 
+#ifdef LIGHTS
+    //start night light
+    _Lights.init();
+#endif
+
 #ifdef ACTIVATE_OLCD
     //start OLCD
     _Screen.init();
@@ -126,6 +136,10 @@ int tempVal = 999;
 
 #ifdef NIGHT_LIGHT
     digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(100));
+#endif
+
+#ifdef LIGHTS
+    digitalWrite(LIGHTS_PIN, _Lights.ActivateLights());
 #endif
 
 #ifdef HUMIDITY_SENSOR
