@@ -145,6 +145,10 @@ boolean SmartHome::run()
     //changed = false;
 #endif
 
+#ifdef AC_UNIT
+    _ACunit.Activate_ACunit();
+#endif
+
 #ifdef NIGHT_LIGHT
     digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(100));
 #endif
