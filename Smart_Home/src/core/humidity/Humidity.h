@@ -24,7 +24,7 @@ class Humidity
     int getValue();
     int Active();
   private:
-    int _sensorPin = HUMIDITY_PIN;
+    //int _sensorPin = HUMIDITY_PIN_READ;
     //int _ledPin = HUMIDITY_LED_PIN;
 };
 

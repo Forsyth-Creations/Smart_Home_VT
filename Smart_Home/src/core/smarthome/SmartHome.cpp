@@ -139,6 +139,9 @@ int tempVal = 999;
 
 #ifdef SPEAKER
     //_Speaker.sayNumber(humidityVal);
+    _Speaker.sayTheTempIs();
+    _Speaker.sayNumber(tempVal);
+    _Speaker.say(sp3_DEGREES);
 #endif
 
 #ifdef DEBUG

@@ -47,4 +47,5 @@ void setup() {
 }
 
 void loop() {
+  voice.say(spINTRUDER);
 }

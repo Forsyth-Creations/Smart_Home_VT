@@ -60,7 +60,7 @@ void Speaker::sayIntruderAlert()
 void Speaker::sayNumber(int number)
 {
     //Zero to nine case
-    static Talkie voice;
+    Talkie voice;
 
     if (number >= 0 && number <= 19)
     {
@@ -171,13 +171,19 @@ void Speaker::sayNumber(int number)
         }
     }
 }
-void Speaker::sayTheTempIs(int number)
+void Speaker::sayTheTempIs()
 {
-    static Talkie voice;
+    Talkie voice;
     voice.say(sp3_THE);
     voice.say(spTEMPERATURE);
     voice.say(sp3_IS);
-    sayNumber(number);
+    //sayNumber(number);
+}
+
+void Speaker::say(const uint8_t * aWordDataAddress)
+{
+    Talkie voice;
+    voice.say(aWordDataAddress);
 }
 
 #endif
