@@ -18,6 +18,7 @@
 #define NIGHT_LIGHT_PIN 13
 #define TEMP_LED_PIN 10
 #define SPEAKER_PIN 3
-#define LIGHTS_PIN 11
+#define LIGHTS_LED_PIN 11
+#define AC_UNIT_LED_PIN 12
 
 //#define HUMIDITY_LED_PIN 6

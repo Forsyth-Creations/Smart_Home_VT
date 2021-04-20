@@ -34,5 +34,8 @@
 //Activates the temperature functionality
 #define TEMP_SENSOR
 
+//Activates the AC unit
+#define AC_UNIT
+
 ///Activates the humidity functionality
 #define HUMIDITY_SENSOR

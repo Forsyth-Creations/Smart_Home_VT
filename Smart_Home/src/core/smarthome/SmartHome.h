@@ -26,6 +26,10 @@
     #include "core\temp\Temp.h"
 #endif
 
+#ifdef AC_UNIT
+    #include "core\ACunit\ACunit.h"
+#endif
+
 #ifdef HUMIDITY_SENSOR
     #include "core\humidity\Humidity.h" 
 #endif
@@ -91,6 +95,11 @@ boolean FSM();
 #ifdef LIGHTS
     //start night light
     Lights _Lights;
+#endif
+
+#ifdef TEMP_SENSOR
+    //start AC unit
+    ACunit _ACunit;
 #endif
 
 #ifdef ACTIVATE_OLCD

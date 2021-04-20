@@ -18,7 +18,7 @@ class Lights
     boolean init();
     int ActivateLights();
   private:
-    int _ledPin = LIGHTS_PIN;
+    int _ledPin = LIGHTS_LED_PIN;
 };
 
 #endif

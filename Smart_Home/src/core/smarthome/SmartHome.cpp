@@ -31,6 +31,10 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
     _Temp = Temp();
 #endif
 
+#ifdef AC_UNIT 
+    _ACunit = ACunit();
+#endif
+
 #ifdef HUMIDITY_SENSOR //weather station part 2
     _Humidity = Humidity();
 #endif
@@ -78,6 +82,10 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
 #ifdef TEMP_SENSOR
     //weather station
     _Temp.init();
+#endif
+
+#ifdef AC_UNIT
+    _ACunit.init();
 #endif
 
 #ifdef HUMIDITY_SENSOR
@@ -132,14 +140,16 @@ int tempVal = 999;
     tempVal = _Temp.getTempF();
 #endif
 
-
+#ifdef AC_UNIT
+    _ACunit.Activate_ACunit();
+#endif
 
 #ifdef NIGHT_LIGHT
     digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(100));
 #endif
 
 #ifdef LIGHTS
-    digitalWrite(LIGHTS_PIN, _Lights.ActivateLights());
+    digitalWrite(LIGHTS_LED_PIN, _Lights.ActivateLights());
 #endif
 
 #ifdef HUMIDITY_SENSOR
