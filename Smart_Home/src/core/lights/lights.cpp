@@ -34,9 +34,7 @@ boolean Lights::init()
 
 int Lights::ActivateLights() //can feed it a threshold
 {
-    int returnState = 0; 
-
-    returnState = 1;
+    int returnState = 1; 
 
     #ifdef DEBUG
         Serial.print("ReturnState: ");
