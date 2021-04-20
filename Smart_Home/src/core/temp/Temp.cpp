@@ -36,26 +36,37 @@ boolean Temp::init(double bVal)
 boolean Temp::init(void)
 {
     this->init(3949);
+    tempValue = this->getTempF();
     return true;
 }
 
-double Temp::getTemp()
+void Temp::updateTempVal(void)
+{
+    tempValue = this->getTempF();
+}
+
+int Temp::getTempValue()
+{
+    return tempValue;
+}
+
+int Temp::getTemp()
 {
     return getTemp(USED_RESISTANCE);
 }
 
-double Temp::getTempF()
+int Temp::getTempF()
 {
-    return convertCtoF(getTemp(USED_RESISTANCE));
+    return round(convertCtoF(getTemp(USED_RESISTANCE)));
 }
 
-double Temp::convertCtoF(double c)
+int Temp::convertCtoF(double c)
 {
-    return (c * (9/5)) + 32;
+    return round((c * (9/5)) + 32);
 }
 
 
-double Temp::getTemp(double BALANCE_RESISTOR)
+int Temp::getTemp(double BALANCE_RESISTOR)
 {
     //Formula:
     //            1
@@ -97,9 +108,7 @@ double Temp::getTemp(double BALANCE_RESISTOR)
     {
         digitalWrite(TEMP_LED_PIN, LOW);
     }
-
-    return tempRead;
-
+    return round(tempRead);
 }
 
 #endif

@@ -115,15 +115,13 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
 #ifdef SPEAKER
     //start speaker
     _Speaker.init();
-    //_Speaker.sayGreeting();
+    _Speaker.sayGreeting();
 #endif
     return true;
 }
 
 boolean SmartHome::run()
 {
-int humidityVal = 999;
-int tempVal = 999;
     //if (Serial.available())
     // {
     //     //connected to GUI, be slave to it
@@ -137,11 +135,14 @@ int tempVal = 999;
     //delay(200);
 
 #ifdef TEMP_SENSOR
+    int tempVal = 999;  
+    boolean changed;
     tempVal = _Temp.getTempF();
-#endif
-
-#ifdef AC_UNIT
-    _ACunit.Activate_ACunit();
+    #ifdef DEBUG
+    Serial.println("getTempValue is " + String(_Temp.getTempValue()) + " and getTemp is " + String( _Temp.getTempF()));
+    #endif
+    changed = _Temp.getTempValue() != _Temp.getTempF();
+    //changed = false;
 #endif
 
 #ifdef NIGHT_LIGHT
@@ -153,6 +154,7 @@ int tempVal = 999;
 #endif
 
 #ifdef HUMIDITY_SENSOR
+    int humidityVal = 999;
     humidityVal = _Humidity.getValue();
     //digitalWrite(humidityLEDpin, _Humidity.init());
 #endif
@@ -163,19 +165,31 @@ int tempVal = 999;
 
 #ifdef SPEAKER
     //_Speaker.sayNumber(humidityVal);
+    // _Speaker.sayTheTempIs();
+    // _Speaker.sayNumber(tempVal);
+    // _Speaker.say(sp3_DEGREES);
+#endif
+
+#if (defined SPEAKER && defined TEMP_SENSOR)
+    if (changed)
+    {
+        _Temp.updateTempVal();
+        _Speaker.sayTheTempIs();
+        _Speaker.sayNumber(tempVal);
+        _Speaker.say(sp3_DEGREES);
+    }
+    changed = false;
 #endif
 
 #ifdef DEBUG
     //Serial.println("----------------------------------------------");
 #endif
-
     return true;
 
-//check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
-//inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
+    //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
+    //inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
+    return true;
 }
-
-
 
 // boolean SmartHome::FSM()
 // {

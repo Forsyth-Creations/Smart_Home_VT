@@ -26,7 +26,8 @@ class Speaker
     void sayIntruderAlert();
     void sayGreeting();
     void sayNumber(int number);
-    void sayTheTempIs(int number);
+    void sayTheTempIs();
+    void say(const uint8_t * aWordDataAddress);
   private:
 };
 

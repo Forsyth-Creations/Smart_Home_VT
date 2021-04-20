@@ -11,7 +11,7 @@
  * Written by Henry Forsyth, Februrary 11, 2021 2:00 AM
  * */
  
-//#define DEBUG
+#define DEBUG
 
 //Activates the bluetooth functionality
 //#define HC06_ACTIVE
@@ -23,7 +23,7 @@
 //#define SECURITY_SYSTEM
 
 //Activates the Night Light functionality, including sensor and lighting
-#define NIGHT_LIGHT
+//#define NIGHT_LIGHT
 
 //Activates the Lights functionality, including sensor and lighting
 #define LIGHTS

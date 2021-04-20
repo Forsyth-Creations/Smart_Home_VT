@@ -8,7 +8,8 @@
 
 #define PHOTO_PIN A0
 #define TEMP_PIN A1
-#define HUMIDITY_PIN A2
+#define HUMIDITY_PIN_READ A2
+#define HUMIDITY_PIN_WRITE 6
 #define SCREEN_SDA A4
 #define SCREEN_SCL A5
 

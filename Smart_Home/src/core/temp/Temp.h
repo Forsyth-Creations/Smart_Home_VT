@@ -35,13 +35,16 @@ class Temp
     Temp();
     boolean init(double bVal);
     boolean init(void);
-    double getTemp();
-    double getTemp(double BALANCE_RESISTOR);
-    double getTempF();
-    double convertCtoF(double c);
+    int getTemp();
+    int getTemp(double BALANCE_RESISTOR);
+    int getTempF();
+    int convertCtoF(double c);
+    void updateTempVal(void);
+    int getTempValue();
   private:
     int _tempPin;
     double _bVal;
+    int tempValue;
 };
 
 #endif
