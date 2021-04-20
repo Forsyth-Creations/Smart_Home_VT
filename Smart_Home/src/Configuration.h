@@ -26,7 +26,7 @@
 #define NIGHT_LIGHT
 
 //Activates the Speaker functionality
-//#define SPEAKER
+#define SPEAKER
 
 //Activates the temperature functionality
 #define TEMP_SENSOR
