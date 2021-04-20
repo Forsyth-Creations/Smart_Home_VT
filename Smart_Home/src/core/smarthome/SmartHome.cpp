@@ -138,8 +138,7 @@ int tempVal = 999;
 #endif
 
 #ifdef SPEAKER
-   // _Speaker.sayTheTempIs(tempVal);
-   _Speaker.sayIntruderAlert();
+    //_Speaker.sayNumber(humidityVal);
 #endif
 
 #ifdef DEBUG
