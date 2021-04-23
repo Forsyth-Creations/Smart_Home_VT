@@ -46,7 +46,7 @@ int Humidity::getValue()
 
     int N;
     int currentSample = 0;
-    for(N = 0;N<1000;N++){
+    for(N = 0;N < 20;N++){
         if (value > currentSample){
             currentSample = value;
         }

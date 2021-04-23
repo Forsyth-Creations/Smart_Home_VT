@@ -39,5 +39,6 @@ public:
 
 private:
   Adafruit_SSD1306 display;
+  bool displayIsWorking = false;
 };
 #endif

@@ -83,7 +83,7 @@ int Temp::getTemp(double BALANCE_RESISTOR)
     for (int i = 0; i < SAMPLE_NUMBER; i++)
     {
         adcSamples[i] = analogRead(TEMP_PIN); // read from pin and store
-        delay(10);                                 // wait 10 milliseconds
+        //delay(10);                                 // wait 10 milliseconds
     }
 
     for (int i = 0; i < SAMPLE_NUMBER; i++)
@@ -101,7 +101,8 @@ int Temp::getTemp(double BALANCE_RESISTOR)
         Serial.println(tempRead);
     #endif
 
-    if (tempRead){
+    if (tempRead)
+    {
         digitalWrite(TEMP_LED_PIN, HIGH);
     }
     else

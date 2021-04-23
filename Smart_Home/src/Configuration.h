@@ -11,10 +11,10 @@
  * Written by Henry Forsyth, Februrary 11, 2021 2:00 AM
  * */
  
-#define DEBUG
+//#define DEBUG
 
 //Activates the bluetooth functionality
-//#define HC06_ACTIVE
+#define HC06_ACTIVE
 
 //Activates the OLCD functionality
 #define ACTIVATE_OLCD
@@ -26,16 +26,16 @@
 #define NIGHT_LIGHT
 
 //Activates the Lights functionality, including sensor and lighting
-#define LIGHTS
+//#define LIGHTS
 
 //Activates the Speaker functionality
-#define SPEAKER
+//#define SPEAKER
 
 //Activates the temperature functionality
 #define TEMP_SENSOR
 
 //Activates the AC unit
-#define AC_UNIT
+//#define AC_UNIT
 
 ///Activates the humidity functionality
-#define HUMIDITY_SENSOR
+//#define HUMIDITY_SENSOR

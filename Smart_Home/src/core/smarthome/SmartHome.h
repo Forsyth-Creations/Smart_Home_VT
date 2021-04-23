@@ -97,7 +97,7 @@ boolean FSM();
     Lights _Lights;
 #endif
 
-#ifdef TEMP_SENSOR
+#ifdef AC_UNIT
     //start AC unit
     ACunit _ACunit;
 #endif

@@ -37,8 +37,8 @@ int Lights::ActivateLights() //can feed it a threshold
     int returnState = 1; 
 
     #ifdef DEBUG
-        Serial.print("ReturnState: ");
-        Serial.println(returnState);
+        //Serial.print("ReturnState: ");
+        //Serial.println(returnState);
     #endif
 
     return returnState;
