@@ -29,6 +29,7 @@ NightLight::NightLight()
 boolean NightLight::init()
 {
     Serial.println("Night Light - Online");
+    pinMode(NIGHT_LIGHT_PIN, OUTPUT);
     return true;
 }
 
