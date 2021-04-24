@@ -29,6 +29,7 @@ Lights::Lights()
 boolean Lights::init()
 {
     Serial.println("Lights - Online");
+    pinMode(LIGHTS_LED_PIN, OUTPUT);
     return true;
 }
 

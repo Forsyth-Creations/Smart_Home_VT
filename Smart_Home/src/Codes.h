@@ -4,11 +4,11 @@
  * Here is the GCode scheme for pinging in the device from the GUI. It's a simple scheme that the finite
  * state machine uses for coordinating with the GUI.
  * 
- * Codes Avalible
+ * Codes Avalible to GUI
  * G0: Get Data
  * G1: Send Data
- * G2: Enable Funcitonaliy
- * G3: Disable Functionality
+ * G2: Enable Funcitonaliy (Presently Disabled, too little space on UNO)
+ * G3: Disable Functionality (Presently Disabled, too little space on UNO)
  * 
  * Component Codes:
  * A0 - HC-06 Bluetooth
@@ -24,16 +24,17 @@
  * can be found within the finite state machine, written within the SmartHome.cpp file.
  * As for now, here is an example code of getting temp data. Ignore the spaces between the tokens
  * 
- * G0         A5;
+ * G0 A5;
  * 
- * Notice that a semicolon ends the line
+ * Notice that a semicolon ends the line. This designates the end of a command
  * 
  **/
 
 
+#define G0 //GUI calls this command to retrieve data
+#define G1 //GUI calls this when it is attempting to send data. Typically a boolean for lighting and such. Each module only has one specific G1 command functionaliy
 
-
-#ifdef HC06_ACTIVE
+#ifdef HC05_ACTIVE
     #define A0
 #endif
 

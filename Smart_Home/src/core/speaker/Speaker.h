@@ -1,4 +1,4 @@
- /**
+/**
  * Speaker.cpp - Foc pulling data from PhotoSensor
  * This file was written by Henry Forsyth
  * Februrary 15, 2021
@@ -17,18 +17,17 @@
 #include "Words.h"
 #include "Talkie.h"
 
-
 class Speaker
 {
-  public:
-    Speaker();
-    boolean init();
-    void sayIntruderAlert();
-    void sayGreeting();
-    void sayNumber(int number);
-    void sayTheTempIs();
-    void say(const uint8_t * aWordDataAddress);
-  private:
+public:
+  Speaker();
+  boolean init();
+  void sayIntruderAlert();
+  void sayGreeting();
+  void sayNumber(int number);
+  void sayTheTempIs();
+  void say(const uint8_t *aWordDataAddress);
+private:
 };
 
 #endif

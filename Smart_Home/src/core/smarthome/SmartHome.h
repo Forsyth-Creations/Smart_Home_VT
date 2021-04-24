@@ -16,7 +16,7 @@
 
 //To-to: Ensure all libraries are being imported properly
 
-#ifdef HC06_ACTIVE
+#ifdef HC05_ACTIVE
 //start bluetooth
 #include "core\bluetooth\HC06.h"
 #endif
@@ -66,16 +66,15 @@ public:
     SmartHome();
     boolean init();
     boolean run();
-
     //To-do: create all the object declations alongside their
     //appropriate libraries
 
 private:
 boolean FSM();
 
-#ifdef HC06_ACTIVE
+#ifdef HC05_ACTIVE
     //start bluetooth
-    HC06 _HC06;
+    HC06 _HC05;
 #endif
 
 #ifdef TEMP_SENSOR

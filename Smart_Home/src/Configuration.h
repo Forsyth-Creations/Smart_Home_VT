@@ -8,15 +8,17 @@
  * 
  * 
  * 
- * Written by Henry Forsyth, Februrary 11, 2021 2:00 AM
+ * Written by Henry Forsyth, April 23, 2021 2:00 AM
  * */
  
 //#define DEBUG
 
-//Activates the bluetooth functionality
-#define HC06_ACTIVE
+#define LIGHTWEIGHT //disables all unnecessary functionality to decrease size of program
 
-//Activates the OLCD functionality
+//Activates the bluetooth functionality
+#define HC05_ACTIVE
+
+//Activates the OLCD functionality (about 40% of flash memory, shoot)
 #define ACTIVATE_OLCD
 
 //Activates the Ultrasonic functionality
@@ -26,16 +28,16 @@
 #define NIGHT_LIGHT
 
 //Activates the Lights functionality, including sensor and lighting
-//#define LIGHTS
+#define LIGHTS
 
 //Activates the Speaker functionality
-//#define SPEAKER
+#define SPEAKER
 
 //Activates the temperature functionality
 #define TEMP_SENSOR
 
 //Activates the AC unit
-//#define AC_UNIT
+#define AC_UNIT
 
 ///Activates the humidity functionality
-//#define HUMIDITY_SENSOR
+#define HUMIDITY_SENSOR

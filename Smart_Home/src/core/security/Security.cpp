@@ -56,7 +56,9 @@ int Security::getDistance()
 
     if (distance >= 200 || distance <= 0)
     {
+        #ifdef DEBUG
         Serial.println("Out of range");
+        #endif
     } // Conversely, if you still get a false echo, you may need to increase
     return duration;
 }

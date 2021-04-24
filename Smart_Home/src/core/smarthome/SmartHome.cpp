@@ -22,9 +22,9 @@
 
 SmartHome::SmartHome() //creates all the objects for relavant hardware (based on config file)
 {
-#ifdef HC06_ACTIVE
+#ifdef HC05_ACTIVE
     //start bluetooth
-    _HC06 = HC06();
+    _HC05 = HC06();
 #endif
 
 #ifdef TEMP_SENSOR //weather station part 1
@@ -74,9 +74,9 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
 //this #ifdef structure repeats a bunch, so may be wise to build out one and then copy-paste
 #endif
 
-#ifdef HC06_ACTIVE
+#ifdef HC05_ACTIVE
     //start bluetooth
-    _HC06.init();
+    _HC05.init();
 #endif
 
 #ifdef TEMP_SENSOR
@@ -125,8 +125,8 @@ boolean SmartHome::run()
     int humidityVal = 999;
     int tempVal = 999;
 
-#ifdef HC06_ACTIVE
-    _HC06.getSerialData();
+#ifdef HC05_ACTIVE
+    _HC05.getSerialData();
 #endif
 
 #ifdef TEMP_SENSOR
@@ -176,4 +176,21 @@ boolean SmartHome::run()
     return true;
     //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
     //inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
+}
+
+#define COMMAND_LENGTH 5
+
+boolean SmartHome::FSM() //only works for bluetooth module. Will extend functionality when get back some space on Uno
+{
+    #ifdef HC05_ACTIVE
+        char * command = _HC05.getFullCommand();
+
+        if (command != NULL && strlen(command) > COMMAND_LENGTH)
+        {
+            Serial.println("IN FSM"); 
+        }
+
+
+
+    #endif
 }

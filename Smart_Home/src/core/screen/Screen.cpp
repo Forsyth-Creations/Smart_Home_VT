@@ -28,8 +28,6 @@ Screen::Screen()
 
 boolean Screen::init()
 {
-        const int LOGO_WIDTH = 128;
-        const int LOGO_HEIGHT = 32;
 
         // 'undefined', 128x32pxdis
         // static const unsigned char logo_bmp[] PROGMEM =
@@ -67,6 +65,13 @@ boolean Screen::init()
         //      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
         // 'Brander', 128x32px
+        displayIsWorking = display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+
+#ifndef LIGHTWEIGHT
+
+const int LOGO_WIDTH = 128;
+const int LOGO_HEIGHT = 32;
+
         static const unsigned char myBitmap[] PROGMEM = {
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -101,21 +106,20 @@ boolean Screen::init()
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-        displayIsWorking = display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
         if (!displayIsWorking)
         {
+
                 Serial.println("Screen - Offline");
         }
         else
         {
+
                 Serial.println("Screen - Online");
                 display.clearDisplay();
                 display.drawBitmap((display.width() - LOGO_WIDTH) / 2, (display.height() - LOGO_HEIGHT) / 2, myBitmap, LOGO_WIDTH, LOGO_HEIGHT, 1);
                 display.display(); //you must always update the screen with "display" to push the latest image
         }
-
-        //delay(1000);
-
+#endif
         return true;
 }
 

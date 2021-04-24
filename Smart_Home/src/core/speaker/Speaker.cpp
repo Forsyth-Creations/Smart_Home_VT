@@ -30,35 +30,38 @@ Speaker::Speaker()
 
 boolean Speaker::init()
 {
+    #ifndef LIGHTWEIGHT
     Serial.println("Speaker - Online");
-    //(*_voice).say(spt_HELLO);
-    //_voice.say(spt_I);
-    //_voice.say(spt_AM);
-    //_voice.say(READY_TO_START);
+    #endif
     return true;
 }
 
 void Speaker::sayGreeting()
 {
-    static Talkie voice;
+    Talkie voice;
     //Serial.println("Saying Greeing");
+    #ifndef LIGHTWEIGHT
     voice.say(spt_HELLO);
     voice.say(spt_I);
     voice.say(spt_AM);
     voice.say(READY_TO_START);
+    #endif
     digitalWrite(SPEAKER_PIN, LOW);
 }
 
 void Speaker::sayIntruderAlert()
 {
-    static Talkie voice;
+    Talkie voice;
     voice.say(spINTRUDER);
     voice.say(spALERT);
     digitalWrite(SPEAKER_PIN, LOW);
 }
 
+
 void Speaker::sayNumber(int number)
 {
+    #ifndef LIGHTWEIGHT
+
     //Zero to nine case
     Talkie voice;
 
@@ -170,13 +173,18 @@ void Speaker::sayNumber(int number)
             sayNumber(teen);
         }
     }
+    #endif
 }
 void Speaker::sayTheTempIs()
 {
+    #ifndef LIGHTWEIGHT
+
     Talkie voice;
     voice.say(sp3_THE);
     voice.say(spTEMPERATURE);
     voice.say(sp3_IS);
+    
+    #endif
     //sayNumber(number);
 }
 

@@ -18,7 +18,7 @@
 #include "Configuration.h"
 #include "HC06.h"
 
-#ifdef HC06_ACTIVE
+#ifdef HC05_ACTIVE
 
     //init code
     HC06::HC06()
@@ -52,7 +52,9 @@
             if (chRecv != ENDING_CHARACTER)
             {
                 recvString[index] = chRecv;
+                #ifdef DEBUG
                 Serial.print(chRecv);
+                #endif
                 index++;
                 //build out command string
             }
@@ -67,9 +69,11 @@
 
                 memset(recvString, '\0', strlen(recvString));
                 memset(command, '\0', strlen(recvString));
+                #ifdef DEBUG
                 Serial.println("");
                 Serial.println("Full command found. The command is:");
                 Serial.println(command);
+                #endif
 
                 index = 0;
             }
@@ -91,5 +95,6 @@
             return NULL;
         }
     }
+
 
 #endif
