@@ -21,6 +21,10 @@
 // simply use the pulseIn feature of the Arduino
 #include "Configuration.h"
 #include "Security.h"
+
+#define ROUNDTRIP_1CM 57
+#define NINE_FT_IN_CM 274 * ROUNDTRIP_1CM
+#define EIGHT_FT_IN_CM 223 * ROUNDTRIP_1CM
 #define MAX_DISTANCE 300 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 #define USPOWER_PIN 4
 
@@ -50,17 +54,26 @@ int Security::getDistance()
     delay(1);
     digitalWrite(TRIGGER_PIN, LOW);
 
-    duration = pulseIn(ECHO_PIN, HIGH, 5700); // Timeout if distance > 100 cm
+    duration = pulseIn(ECHO_PIN, HIGH, ROUNDTRIP_1CM * NINE_FT_IN_CM); // Timeout if distance > 100 cm 
 
-    distance = duration / 57; // Divide by round-trip microseconds per cm to get cm
+    distance = duration / ROUNDTRIP_1CM; // Divide by round-trip microseconds per cm to get cm
 
-    if (distance >= 200 || distance <= 0)
+    if (distance >= NINE_FT_IN_CM || distance <= 0)
     {
         #ifdef DEBUG
         Serial.println("Out of range");
         #endif
     } // Conversely, if you still get a false echo, you may need to increase
     return duration;
+}
+
+bool Security::isInDanger()
+{
+    const int distance = this->getDistance();
+    #ifdef DEBUG
+    Serial.println(distance);
+    #endif
+    return distance < EIGHT_FT_IN_CM && distance > 0;
 }
 
 #endif

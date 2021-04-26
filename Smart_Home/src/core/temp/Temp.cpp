@@ -109,7 +109,7 @@ int Temp::getTemp(double BALANCE_RESISTOR)
     {
         digitalWrite(TEMP_LED_PIN, LOW);
     }
-    return round(tempRead);
+    return round(tempRead) + 15;
 }
 
 #endif

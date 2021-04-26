@@ -21,6 +21,7 @@ class Security
     Security();
     boolean init();
     int getDistance();
+    bool isInDanger();
   private:
     //NewPing sonar;
 };

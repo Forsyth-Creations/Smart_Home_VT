@@ -18,7 +18,7 @@
 
 #ifdef HC05_ACTIVE
 //start bluetooth
-#include "core\bluetooth\HC06.h"
+#include "core\bluetooth\HC05.h"
 #endif
 
 #ifdef TEMP_SENSOR
@@ -71,10 +71,15 @@ public:
 
 private:
 boolean FSM();
+int humidityVal;
+int tempVal;
+boolean nightLightToggler;
+boolean ultransonicToggler;
+boolean speakTempToggler;
 
 #ifdef HC05_ACTIVE
     //start bluetooth
-    HC06 _HC05;
+    HC05 _HC05;
 #endif
 
 #ifdef TEMP_SENSOR

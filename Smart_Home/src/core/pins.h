@@ -6,25 +6,25 @@
  **/
 #include "Arduino.h"
 
-#define PHOTO_PIN A0
-#define TEMP_PIN A1
+#define PHOTO_PIN A1
+#define TEMP_PIN A0
 #define HUMIDITY_PIN_READ A2
 #define SCREEN_SDA A4
 #define SCREEN_SCL A5
 
-#define NIGHT_LIGHT_PIN 13
+#define NIGHT_LIGHT_PIN 4
 
 #define TRIGGER_PIN  12  // Arduino pin tied to trigger pin on the ultrasonic sensor.
 #define ECHO_PIN     11  // Arduino pin tied to echo pin on the ultrasonic sensor.
 
-#define TEMP_LED_PIN 10
+#define TEMP_LED_PIN 13
 
 #define LIGHTS_LED_PIN 9
 #define AC_UNIT_LED_PIN 8
 
 //Let's see if this works
-#define SOFTWARE_SERIAL_RX 7
-#define SOFTWARE_SERIAL_TX 6
+#define SOFTWARE_SERIAL_RX 6
+#define SOFTWARE_SERIAL_TX 7
 
 #define HUMIDITY_PIN_WRITE 5
 

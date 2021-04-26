@@ -24,7 +24,7 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
 {
 #ifdef HC05_ACTIVE
     //start bluetooth
-    _HC05 = HC06();
+    _HC05 = HC05();
 #endif
 
 #ifdef TEMP_SENSOR //weather station part 1
@@ -64,6 +64,9 @@ SmartHome::SmartHome() //creates all the objects for relavant hardware (based on
     _Speaker = Speaker();
 #endif
     Serial.println("Running smart home");
+    nightLightToggler = true;
+    ultransonicToggler = false;
+    speakTempToggler = false;
 }
 
 boolean SmartHome::init() //runs a test script on each piece to make sure everything is working correctly
@@ -122,12 +125,9 @@ boolean SmartHome::init() //runs a test script on each piece to make sure everyt
 
 boolean SmartHome::run()
 {
-    int humidityVal = 999;
-    int tempVal = 999;
+    humidityVal = 999;
+    tempVal = 999;
 
-#ifdef HC05_ACTIVE
-    _HC05.getSerialData();
-#endif
 
 #ifdef TEMP_SENSOR
     boolean changed;
@@ -135,8 +135,17 @@ boolean SmartHome::run()
 #ifdef DEBUG
     //Serial.println("getTempValue is " + String(_Temp.getTempValue()) + " and getTemp is " + String(_Temp.getTempF()));
 #endif
-    changed = _Temp.getTempValue() != _Temp.getTempF();
+    changed = _Temp.getTempF() != _Temp.getTempValue();
     //changed = false;
+#endif
+
+#ifdef HUMIDITY_SENSOR
+    humidityVal = _Humidity.getValue();
+#endif
+
+#ifdef HC05_ACTIVE
+    _HC05.getSerialData();
+    this->FSM();
 #endif
 
 #ifdef AC_UNIT
@@ -144,15 +153,12 @@ boolean SmartHome::run()
 #endif
 
 #ifdef NIGHT_LIGHT
-    digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(100));
+if (nightLightToggler)
+    digitalWrite(NIGHT_LIGHT_PIN, _Light.getSensorState(200) == true ? HIGH : LOW);
 #endif
 
 #ifdef LIGHTS
     digitalWrite(LIGHTS_LED_PIN, _Lights.ActivateLights());
-#endif
-
-#ifdef HUMIDITY_SENSOR
-    humidityVal = _Humidity.getValue();
 #endif
 
 #ifdef ACTIVATE_OLCD
@@ -164,7 +170,7 @@ boolean SmartHome::run()
 #endif
 
 #if (defined SPEAKER && defined TEMP_SENSOR)
-    if (changed)
+    if (changed && speakTempToggler)
     {
         _Temp.updateTempVal();
         _Speaker.sayTheTempIs();
@@ -173,24 +179,74 @@ boolean SmartHome::run()
     }
     changed = false;
 #endif
+
+#if (defined SECURITY_SYSTEM && defined SPEAKER)
+    if (_Security.isInDanger()  && ultransonicToggler)
+    {
+        _Speaker.sayIntruderAlert();
+    }
+#endif
+
     return true;
     //check all appendages here. Should look like "nightlight.read()", or something like that. Make sure you only run what is defined
     //inact any actions here. Shoud look like "lights.on()", or something to that effect. Make sure you only run what is defined
 }
 
-#define COMMAND_LENGTH 5
+#define COMMAND_LENGTH 4 //For simplicity, we are going to assume that every command sent is 8 characters long. This will help write the stripped-down FSM
 
 boolean SmartHome::FSM() //only works for bluetooth module. Will extend functionality when get back some space on Uno
 {
-    #ifdef HC05_ACTIVE
-        char * command = _HC05.getFullCommand();
+    int returnVal = false;
+#ifdef HC05_ACTIVE
 
-        if (command != NULL && strlen(command) > COMMAND_LENGTH)
+    char *command = _HC05.getFullCommand();
+
+    if (command != NULL && strlen(command) == COMMAND_LENGTH || strlen(command) == COMMAND_LENGTH + 1)
+    {
+        #ifdef DEBUG
+        Serial.println("IN FSM");
+        Serial.println(command);
+        #endif
+
+        char firstCommand[] = {command[0], command[1], '\0'};
+        char secondCommand[] = {command[2], command[3], '\0'};
+
+        #ifdef DEBUG
+        Serial.println("First Command:" + String(firstCommand));
+        Serial.println("Second Command:" + String(secondCommand));
+        #endif
+
+        if (String(firstCommand) == "G0")
         {
-            Serial.println("IN FSM"); 
+            #ifdef DEBUG
+                Serial.println("G0 Found");
+            #endif
+            //TODO: Temp and Humidity Grab Data
+             if (String(secondCommand) == "A5") //Temp
+                _HC05.print(tempVal);
+            if (String(secondCommand) == "A6") //Humidity
+                _HC05.print(humidityVal);
         }
 
+        if (String(firstCommand) == "G1")
+        {
+            int thirdCommand = (int)command[4] - 48;
+            #ifdef DEBUG
+                Serial.println("G1 Found");
+                Serial.println(thirdCommand);
+            #endif
+            if (String(secondCommand) == "A2") //Ultrasonic
+                ultransonicToggler = thirdCommand == 1 ? true : false;
+            if (String(secondCommand) == "A3") //Night Light
+                nightLightToggler = thirdCommand == 1 ? true : false;
+            if (String(secondCommand) == "A5") //Night Light
+                speakTempToggler = thirdCommand == 1 ? true : false;
+            // TODO : night light and secuirty system functionality needs to be toggled here
+        }
 
+        returnVal = true;
+    }
+#endif
 
-    #endif
+    return returnVal;
 }

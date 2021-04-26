@@ -78,7 +78,7 @@ int Humidity::getValue()
     }
 
 
-return Humidity_Percent;
+return Humidity_Percent - (Humidity_Percent % 10);
 }
 
 int Humidity::Active()
