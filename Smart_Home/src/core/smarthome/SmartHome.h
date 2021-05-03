@@ -71,8 +71,8 @@ public:
 
 private:
 boolean FSM();
-int humidityVal;
-int tempVal;
+uint8_t humidityVal;
+uint8_t tempVal;
 boolean nightLightToggler;
 boolean ultransonicToggler;
 boolean speakTempToggler;

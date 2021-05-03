@@ -16,9 +16,14 @@ int X_AXIS = 2;
 color b1, b2, c1, c2;
 final int screenSizeX = 800;
 final int screenSizeY = 1500;
+int startTime = 0;
+int tempVal = 0; 
+int humVal  = 0;
+boolean isLedOn = false;
 
 void setup() {
   frameRate(60);
+  port = new Serial(this, "COM19", 9600); // Initializing the serial port.
   //---------------- set up window ----------------------
   size(800, 1500);
   setLinearGradient(0, 0, 800, 1500, color(151, 200, 218), color(255, 255, 255), Y_AXIS);
@@ -38,11 +43,30 @@ void setup() {
   secSysToggle = new ToggleWithText(120, 1100, "SECURITY SYSTEM");
   enableButton = new MasterEnable(400, 1300, 700, 150);
   menuButton = new MenuButton(20, 20);
+  //------------------------- Setting Toggle Element Commands ---------------------------
+  secSysToggle.setCommand("G1 A2");
+  nightLightToggle.setCommand("G1 A3");
+  tempToggle.setCommand("G1 A5");
+  
+  port.write("G0 A5;");
+  delay(100);
+  tempVal = port.read();
+  delay(150);
+  port.clear();
+  delay(150);
+  port.write("G0 A6;");
+  delay(100);
+  humVal = port.read();
+  print(humVal);
+  
 }
 
 void draw() {
   //background(255, 255, 255);
-  //setLinearGradient(0, 0, 800, 1500, color(151, 200, 240), color(255, 255, 255), Y_AXIS);  
+  //setLinearGradient(0, 0, 800, 1500, color(151, 200, 240), color(255, 255, 255), Y_AXIS); 
+  //--------------------------------- Grab All Necessary Data from Device -------------------------------
+  //updateWeatherStation();
+    
   image(img, 0, 0);
   //----------------------- Menu Button ------------------------------------
   menuButton.display();
@@ -51,9 +75,11 @@ void draw() {
   writeTextCenter("SMART HOME 2021", (int)(width * .61), 40, 60, color(255, 255, 255)); //Title in Tmed Font
   writeTextLeft("By R. Forsyth and J. Michaud", 20, height - 30, 25, color(255, 255, 255)); //FWD
   //----------------------- Update the Sensor Data -------------------------
-  temp.update(80);
+
+   
+  temp.update(tempVal);
   delay(50);
-  humidity.update(33, color(255, 255, 255), color(0, 0, 255), "33%");
+  humidity.update(humVal, color(255, 255, 255), color(0, 0, 255), humVal + "%");
   //------------------------ Show Slider -----------------------------------
   if (!locked)
   {
@@ -104,5 +130,45 @@ void draw() {
     humidity.disable();
   else
     humidity.enable();
-  //------------------------- Launch the Menu, if Selected ---------------
+  //------------------------- Change the LED on the AC Unit Appliance ---------------
+  if (tempVal > round(map(hs1.getPos(), 75, 525, 50, 90)) && !isLedOn)
+  {
+    println("It's too hot");
+    port.write("G1 A7 1;");
+    isLedOn = true;
+  }
+  else if (tempVal < round(map(hs1.getPos(), 75, 525, 50, 90)) && isLedOn)
+  { 
+    println("All good");
+    port.write("G1 A7 0;");
+    isLedOn = false;
+
+  }
+}
+
+void updateWeatherStation()
+{
+  println(millis());
+  if (millis() > startTime + 3000)
+  {
+  startTime = millis();
+  println("in loop");
+  port.write("G0 A5;");
+  delay(50);
+  while (port.available() > 0) {
+     tempVal = port.read();
+     print("Temp is ");
+     println(tempVal);
+  }
+  delay(1000);
+  port.write("G0 A6;");
+  delay(100);
+  if (port.available() > 0) {
+     humVal = port.read();
+     print("Hum is: ");
+     println(humVal);
+  }
+  //port.clear();
+  }
+  
 }

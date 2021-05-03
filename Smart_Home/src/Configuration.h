@@ -13,7 +13,7 @@
  
 //#define DEBUG
 
-//#define LIGHTWEIGHT //disables all unnecessary functionality to decrease size of program
+#define LIGHTWEIGHT //disables all unnecessary functionality to decrease size of program
 
 // Activates the bluetooth functionality
 #define HC05_ACTIVE

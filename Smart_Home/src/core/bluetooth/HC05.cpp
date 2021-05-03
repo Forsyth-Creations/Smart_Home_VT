@@ -43,9 +43,10 @@ boolean HC05::init()
     return true;
 }
 
-void HC05::print(int val)
+void HC05::write(uint8_t val)
 {
-    bluetooth.println(val);
+    //bluetooth.println(val);
+    bluetooth.write(val);
 }
 
 boolean HC05::getSerialData()
@@ -54,35 +55,42 @@ boolean HC05::getSerialData()
     if (bluetooth.available())
     {
         char chRecv = bluetooth.read();
-        if (chRecv != ENDING_CHARACTER)
+        while (chRecv != -1)
         {
-            recvString[index] = chRecv;
-#ifdef DEBUG
-            Serial.print(chRecv);
-#endif
-            index++;
-            //build out command string
-        }
-        else //ending character found
-        {
-            recvString[index] = '\0';
-            commandReady = true;
-            int i = 0;
-            for (i = 0; i < index; i++)
-                command[i] = recvString[i];
-            command[i] = '\0';
 
-            memset(recvString, '\0', strlen(recvString));
-            memset(command, '\0', strlen(recvString));
+            //Serial.println(chRecv);
+            if (chRecv != ENDING_CHARACTER)
+            {
+                recvString[index] = chRecv;
 #ifdef DEBUG
-            Serial.println("");
-            Serial.println("Full command found. The command is:");
-            Serial.println(command);
+                Serial.print(chRecv);
+#endif
+                index++;
+                //build out command string
+            }
+            else //ending character found
+            {
+                recvString[index] = '\0';
+                commandReady = true;
+                int i = 0;
+                for (i = 0; i < index; i++)
+                    command[i] = recvString[i];
+                command[i] = '\0';
+
+                memset(recvString, '\0', strlen(recvString));
+                memset(command, '\0', strlen(recvString));
+#ifdef DEBUG
+                Serial.println("");
+                Serial.println("Full command found. The command is:");
+                Serial.println(command);
 #endif
 
-            index = 0;
+                index = 0;
+            }
+            chRecv = bluetooth.read();
         }
     }
+    //bluetooth.clear();
     return true;
 }
 
@@ -104,13 +112,13 @@ char *HC05::getFullCommand()
                 len--;
             }
         }
-            //---------------------------------------------------------------------------------
-            return command;
-        }
-        else
-        {
-            return NULL;
-        }
+        //---------------------------------------------------------------------------------
+        return command;
     }
+    else
+    {
+        return NULL;
+    }
+}
 
 #endif

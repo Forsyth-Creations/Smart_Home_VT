@@ -67,7 +67,6 @@ boolean Screen::init()
         // 'Brander', 128x32px
         displayIsWorking = display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 
-#ifndef LIGHTWEIGHT
 
 const int LOGO_WIDTH = 128;
 const int LOGO_HEIGHT = 32;
@@ -119,7 +118,7 @@ const int LOGO_HEIGHT = 32;
                 display.drawBitmap((display.width() - LOGO_WIDTH) / 2, (display.height() - LOGO_HEIGHT) / 2, myBitmap, LOGO_WIDTH, LOGO_HEIGHT, 1);
                 display.display(); //you must always update the screen with "display" to push the latest image
         }
-#endif
+
         return true;
 }
 

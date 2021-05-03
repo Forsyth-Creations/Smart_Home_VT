@@ -9,6 +9,7 @@ class Toggle
   color redColor = color(204, 23, 21);
   color blackColor = color(21, 23, 21);
   color setColor = color(0, 0, 0);
+  String command;
   Toggle(int _x, int _y)
   {
     x = _x;
@@ -56,6 +57,8 @@ class Toggle
     if (isMouseOn() && mousePressed)
     {
       state = !state;
+      send(command +  " " + (state  == true ? "1" : "0") + ";");
+      //println(command +  " " + (state  == true ? "1" : "0") + ";");
       delay(50);
     }
   }
@@ -80,6 +83,18 @@ class Toggle
   void setLock(boolean state)
   {
     locked = state;
+  }
+  void setCommand(String p_command)
+  {
+    command =  p_command;
+  }
+  void send(String p_command)
+  {
+    if (command != null)
+    {
+      port.write(command +  " " + (state  == true ? "1" : "0") + ";");
+      //print("Sent");
+    }
   }
 }
 

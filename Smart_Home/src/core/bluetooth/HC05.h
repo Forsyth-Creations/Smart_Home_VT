@@ -22,7 +22,7 @@ class HC05
     boolean init();
     boolean getSerialData();
     char* getFullCommand();
-    void print(int val);
+    void write(uint8_t val);
   private:
     char recvString[MAX_COMMAND_LENGTH];
     char command[MAX_COMMAND_LENGTH];

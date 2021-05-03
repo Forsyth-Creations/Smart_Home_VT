@@ -18,6 +18,7 @@
  * A4 - Speaker
  * A5 - Temp 
  * A6 - Humidity
+ * A7 - AC Unit Light
  * 
  * Now certianly one cannot set data for the Humidity, but one can send data to the 
  * as a message of what to display. What values dictate what behavior/what is shown
